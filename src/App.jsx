@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-zinc-300">
+      <div className="">
           <Navbar />
           <Homepage />
       </div>

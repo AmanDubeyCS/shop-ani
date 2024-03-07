@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="bg-white">
+    <header className="">
       <section className="container justify-center items-center p-4">
         <div className="flex justify-between items-center">
           <div className="">
@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="flex justify-between gap-6 items-center">
             <input
               placeholder="Enter your search"
-              class=" border-2 outline-none rounded-lg  px-6 py-1 text-base cursor-pointer transition"
+              className=" border-2 outline-none rounded-lg px-6 py-1 text-base cursor-pointer transition"
               type="text"
             />
             <div className="flex gap-3">
@@ -35,11 +35,10 @@ const Navbar = () => {
         <ul className="flex gap-8">
             {navlist.map(menu =>{
                 return(
-                    <li><Link>{menu.title}</Link></li>
+                    <li key={menu.title}><Link>{menu.title}</Link></li>
                 )
             })}
         </ul>
-        
       </nav>
     </header>
   );
