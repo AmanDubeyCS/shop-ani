@@ -1,6 +1,9 @@
+import Footer from "./Components/Footer/Footer"
 import Navbar from "./Components/Header/Navbar"
+import HotAnime from "./Components/HotAnime/HotAnime"
 import ProductCrousal from "./Components/YouMayLike/ProductCrousal"
 import Homepage from "./Pages/Homepage"
+import Menspage from "./Pages/Menspage"
 
 function App() {
   
@@ -9,7 +12,9 @@ function App() {
     <>
       <div className="">
           <Navbar />
-          <Homepage />
+          {/* <Homepage /> */}
+          <Menspage />
+          <Footer />
       </div>
       
     </>

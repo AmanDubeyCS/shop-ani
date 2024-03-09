@@ -9,11 +9,11 @@ import "swiper/css/navigation";
 const ProductCrousal = ({title, products}) => {
   return (
     <section className="pt-16">
-      <div className="container flex flex-col px-5 py-8 pb-3 rounded-md">
+      <div className="container flex flex-col  py-8 pb-3 rounded-md">
         <div className="">
           <h1 className="text-2xl font-semibold my-8 text-center text-[#FFBADE]">{title}</h1>
         </div>
-        <div className="w-full h-[50dvh]">
+        <div className="w-full">
           <Swiper
             spaceBetween={0}
             slidesPerView={5}

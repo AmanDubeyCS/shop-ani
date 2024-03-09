@@ -9,6 +9,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ProductCrousal from "../Components/YouMayLike/ProductCrousal";
+import HotAnime from "../Components/HotAnime/HotAnime";
 
 const Homepage = () => {
   const [showMore, setShowMore] = useState(false);
@@ -100,6 +101,7 @@ const Homepage = () => {
         </div>
       </div>
       <ProductCrousal title="Latest Drop"/>
+      <HotAnime />
      <ProductCrousal title="Today's pick"/>
      <ProductCrousal title="Best Of T-shirts"/>
     
