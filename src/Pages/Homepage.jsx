@@ -28,7 +28,7 @@ const Homepage = () => {
           loop={true}
           navigation
           // onSlideChange={showMore ? handleclick : ""}
-          onSwiper={(swiper) => console.log(swiper)}
+          // onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide>
             <Hero />

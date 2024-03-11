@@ -31,7 +31,6 @@ const Card = () => {
         Add To Cart
       </div> */}
       </div>
-      
     </>
   );
 };
