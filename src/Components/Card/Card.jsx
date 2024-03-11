@@ -6,10 +6,10 @@ const Card = () => {
   return (
     <>
       <div
-        className="w-[300px] h-[500px] bg-white bg-transparent overflow-hidden"
+        className="w-[300px] h-[500px] bg-white bg-transparent overflow-hidden transition-all duration-200 ease-in-out hover:scale-105 hover:border"
       >
         <div className="h-[400px] overflow-hidden">
-          <img src={im} alt="" className="h-full transition-transform duration-300 hover:scale-125"/>
+          <img src={im} alt="" className="h-full "/>
         </div>
         <div className="flex flex-col gap-2 px-3 py-3">
           <div className="text-[12px] text-gray-500 font-medium text-start">T-shirt</div>

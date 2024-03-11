@@ -88,7 +88,7 @@ const Homepage = () => {
             </div>
           </SwiperSlide>
         </Swiper>
-        <div
+        {/* <div
           className={`p-3 items-center rounded-2xl bg-black absolute left-[45%] -bottom-8 z-30 cursor-pointer ${
             !showMore ? "animate-bounce" : ""
           }`}
@@ -98,7 +98,7 @@ const Homepage = () => {
             <IconArrowBadgeDownFilled />
             BUY NOW
           </h1>
-        </div>
+        </div> */}
       </div>
       <ProductCrousal title="Latest Drop"/>
       <HotAnime />

@@ -11,10 +11,20 @@ const ProductCrousal = ({title, products}) => {
     <section className="pt-16">
       <div className="container flex flex-col  py-8 pb-3 rounded-md">
         <div className="">
-          <h1 className="text-2xl font-semibold my-8 text-center text-[#FFBADE]">{title}</h1>
+          <h1 className="text-2xl font-semibold my-8 border-b-2 ">{title}</h1>
         </div>
-        <div className="w-full">
-          <Swiper
+        <div className="w-full flex flex-wrap">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          {/* <Swiper
             spaceBetween={0}
             slidesPerView={5}
             onSlideChange={() => console.log("slide change")}
@@ -41,7 +51,7 @@ const ProductCrousal = ({title, products}) => {
             <SwiperSlide>
               <Card />
             </SwiperSlide>
-          </Swiper>
+          </Swiper> */}
         </div>
       </div>
     </section>

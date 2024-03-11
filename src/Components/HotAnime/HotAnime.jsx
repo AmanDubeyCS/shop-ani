@@ -6,7 +6,7 @@ const HotAnime = () => {
     <section>
         <div className="container flex flex-col px-5 py-8 pb-3 rounded-md">
         <div className="">
-          <h1 className="text-2xl font-semibold my-8 text-center text-[#FFBADE]">Hot Anime Picks</h1>
+          <h1 className="text-2xl font-semibold my-8 border-b-2">Hot Anime Picks</h1>
         </div>
         <div className="w-full h-[50dvh] flex gap-2 overflow-hidden">
             <div className="img1 w-[40%]">

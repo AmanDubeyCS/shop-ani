@@ -19,12 +19,12 @@ const Navbar = () => {
               type="text"
             />
             <div className="flex gap-3">
-              <h1 className="flex text-lg items-center">
-                <IconUserCircle />
+              <h1 className="flex gap-1 text-lg items-center cursor-pointer ">
+                <IconUserCircle stroke={1.5}/>
                 Account
               </h1>
-              <h1 className="flex text-lg items-center">
-                <IconShoppingCart />
+              <h1 className="flex gap-1 text-lg items-center cursor-pointer">
+                <IconShoppingCart stroke={1.5}/>
                 Cart
               </h1>
             </div>
@@ -35,7 +35,7 @@ const Navbar = () => {
         <ul className="flex gap-8">
             {navlist.map(menu =>{
                 return(
-                    <li key={menu.title}><Link>{menu.title}</Link></li>
+                    <li key={menu.title}><Link to={menu.to}>{menu.title}</Link></li>
                 )
             })}
         </ul>

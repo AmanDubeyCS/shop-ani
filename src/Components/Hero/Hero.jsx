@@ -3,7 +3,7 @@ import p1 from '../../Assets/primary1.jpg'
 
 const Hero = () => {
   return (
-    <div className='flex w-full relative h-[50dvh] overflow-hidden  rounded-md shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]'>
+    <div className='flex w-full relative h-[50dvh] overflow-hidden bg-[#201f31] text-white  rounded-md '>
         <div className="absolute left-[35%] right-0 bottom-0 top-0 mask">
             <img src={p1} alt="" className="w-full h-full object-cover absolute "/>
         </div>
