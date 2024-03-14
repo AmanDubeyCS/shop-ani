@@ -11,9 +11,11 @@ import "swiper/css/pagination";
 import ProductCrousal from "../Components/YouMayLike/ProductCrousal";
 import HotAnime from "../Components/HotAnime/HotAnime";
 
-const Homepage = () => {
+const Homepage = ({data}) => {
   const [showMore, setShowMore] = useState(false);
-
+  const latestDrop = data.map((item) => item).filter((item) => item.Discount > 40)
+  const tShirt =  data.map((item) => item).filter((item) => item.Type === "T-shirt")
+  
   const handleclick = () => {
     setShowMore((prev) => !prev);
   };
@@ -21,6 +23,7 @@ const Homepage = () => {
   return (
     <section className="pt-8">
       <div className="container rounded-md shadow-[inset_10px_10px_20px_8px_#00000024] relative">
+
         <Swiper
           modules={[Navigation]}
           spaceBetween={50}
@@ -32,60 +35,12 @@ const Homepage = () => {
         >
           <SwiperSlide>
             <Hero />
-            <div
-              className={`${
-                showMore ? "flex" : "hidden"
-              } flex-wrap justify-between gap-5 mt-8`}
-            >
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Hero />
-            <div
-              className={`${
-                showMore ? "flex" : "hidden"
-              } flex-wrap justify-between gap-5 mt-8`}
-            >
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Hero />
-            <div
-              className={`${
-                showMore ? "flex" : "hidden"
-              } flex-wrap justify-between gap-5 mt-8`}
-            >
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </div>
           </SwiperSlide>
         </Swiper>
         {/* <div
@@ -100,10 +55,11 @@ const Homepage = () => {
           </h1>
         </div> */}
       </div>
-      <ProductCrousal title="Latest Drop"/>
+
+      <ProductCrousal title="Latest Drop" data={latestDrop}/>
       <HotAnime />
-     <ProductCrousal title="Today's pick"/>
-     <ProductCrousal title="Best Of T-shirts"/>
+     <ProductCrousal title="Today's pick" data={data}/>
+     <ProductCrousal title="Best Of T-shirts" data={tShirt}/>
     
     </section>
   );

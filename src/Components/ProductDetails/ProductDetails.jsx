@@ -1,32 +1,23 @@
 import React from 'react'
 
 
-const ProductDetails = () => {
+const ProductDetails = ({product}) => {
   return (
     <div className='container flex'>
       <div className="w-[30%]">
-        <img src="https://www.redwolf.in/image/cache/catalog/t-shirts/drop-cuts/marvel-arc-reactor-suit-drop-cut-t-shirt-india-600x800.jpg?m=170539803" alt="" />
+        <img src={product?.Image?.Front} alt="" />
       </div>
       <div className="details px-7">
         <div>
-            <h1 className='text-base text-gray-500 font-medium mb-2'>T-shirt</h1>
-            <h1 className='text-[18px] leading-6'>Gojo T-shirt (half-sleev)</h1>
+            <h1 className='text-base text-gray-500 font-medium mb-2'>{product.Type}</h1>
+            <h1 className='text-[18px] leading-6'>{product.Name}</h1>
         </div>
         <div className="text-[28px] font-medium text-black py-5">
-            ₹229{" "}
+        {Math.round(product.Price - (product.Discount / 100) * product.Price)}{" "}
             <span className="text-[16px] line-through text-gray-500 mr-3">
-              800
+              {product.Price}
             </span>
-            <span className="text-[16px] text-green-500 ">30%</span>
-          </div>
-          <div className='flex gap-4 items-center mb-5'>
-            <h1>Colors</h1>
-            <span className='flex w-8 h-8 rounded-full bg-green-200'></span>
-            <span className='flex w-8 h-8 rounded-full bg-green-200'></span>
-            <span className='flex w-8 h-8 rounded-full bg-green-200'></span>
-            <span className='flex w-8 h-8 rounded-full bg-green-200'></span>
-            <span className='flex w-8 h-8 rounded-full bg-green-200'></span>
-            <span className='flex w-8 h-8 rounded-full bg-green-200'></span>
+            <span className="text-[16px] text-green-500 ">{product.discount}%</span>
           </div>
           <div className='flex gap-4 items-center'>
             <h1>Size</h1>
@@ -47,11 +38,11 @@ const ProductDetails = () => {
                     </tr>
                     <tr className='border-t-2 border-b-2'>
                         <td>SLEEVE</td>
-                        <td>Half Sleeve</td>
+                        <td>{product.Sleeve}</td>
                     </tr>
                     <tr className='border-t-2 border-b-2'>
                         <td>FABRIC</td>
-                        <td>100% Cotton, 180 GSM</td>
+                        <td>{product.Fabric}</td>
                     </tr>
                     <tr className='border-t-2 border-b-2'>
                         <td>FIT</td>
@@ -63,7 +54,7 @@ const ProductDetails = () => {
                     </tr>
                     <tr className='border-t-2 border-b-2'>
                         <td>PATTERN</td>
-                        <td>Printed</td>
+                        <td>{product.Pattern}</td>
                     </tr>
                 </tbody>
             </table>

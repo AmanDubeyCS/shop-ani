@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Card from "../Card/Card";
-import { Virtual, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import ProductDetails from "../ProductDetails/ProductDetails";
+// import { ProductContext } from "../../Context/ProductContext";
 
-const ProductCrousal = ({title, products}) => {
+const ProductCrousal = ({title, data}) => {
+
+  const [productDetails, setProductDetails] = useState()
+  // const { List } = useContext(ProductContext) 
+
+  // console.log(List)
   return (
     <section className="pt-16">
       <div className="container flex flex-col  py-8 pb-3 rounded-md">
@@ -14,48 +16,15 @@ const ProductCrousal = ({title, products}) => {
           <h1 className="text-2xl font-semibold my-8 border-b-2 ">{title}</h1>
         </div>
         <div className="w-full flex flex-wrap">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          {/* <Swiper
-            spaceBetween={0}
-            slidesPerView={5}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-          </Swiper> */}
+          {data.map((item, i) => {
+             if(i<10){return(<Card list={item} productInfo={product=>setProductDetails(product)}/>)}
+              
+          })}
+          
         </div>
       </div>
+      {productDetails && <ProductDetails product={productDetails}/>}
     </section>
   );
 };
-
 export default ProductCrousal;

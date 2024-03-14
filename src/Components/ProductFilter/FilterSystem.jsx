@@ -14,7 +14,7 @@ const FilterOption = ({ title, choices }) => {
     }
   };
 
-  console.log(selectedChoices)
+  // console.log(selectedChoices)
 
   return (
     <div className="flex flex-col">
@@ -38,7 +38,8 @@ const FilterOption = ({ title, choices }) => {
   );
 };
 
-const FilterSystem = ({ handleClose }) => {
+const FilterSystem = ({ handleClose, data }) => {
+  console.log(data)
   return (
     
     <div className="container">
