@@ -8,6 +8,7 @@ import { db } from "./Config/Firbase";
 import { useEffect, useState } from "react";
 import { getDocs, collection } from 'firebase/firestore';
 import AddProduct from "./Pages/AddProduct";
+import ProductPage from "./Pages/ProductPage";
 
 
 function App() {
@@ -37,11 +38,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route index path="/" element={<Homepage data={list}/>} />
-        <Route path="men" element={<HomeProducts title="Men" data={list}/>} />
-        <Route path="women" element={<HomeProducts title="Women" data={list}/>} />
-        <Route path="kids" element={<HomeProducts title="Kids" data={list}/>} />
-        <Route path="Accessories" element={<HomeProducts title="Accessories" data={list}/>} />
-        <Route path="product" element={<ProductDetails />} />
+        <Route path="/men" element={<HomeProducts title="Men" data={list}/>} />
+        <Route path="/women" element={<HomeProducts title="Women" data={list}/>} />
+        <Route path="/kids" element={<HomeProducts title="Kids" data={list}/>} />
+        <Route path="/Accessories" element={<HomeProducts title="Accessories" data={list}/>} />
+        <Route path="/product" element={<ProductPage data={list}/>} >
+          <Route path=":productId" element={<ProductPage />}/>
+        </Route>
+
         <Route path="addproduct" element={<AddProduct dbRef={listCollection}/>} />
       </Routes>
       
