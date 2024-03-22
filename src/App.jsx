@@ -1,6 +1,5 @@
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Header/Navbar";
-import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import Homepage from "./Pages/Homepage";
 import HomeProducts from "./Pages/HomeProducts";
 import { Route, Routes } from "react-router-dom";
@@ -45,7 +44,6 @@ function App() {
         <Route path="/product" element={<ProductPage data={list}/>} >
           <Route path=":productId" element={<ProductPage />}/>
         </Route>
-
         <Route path="addproduct" element={<AddProduct dbRef={listCollection}/>} />
       </Routes>
       

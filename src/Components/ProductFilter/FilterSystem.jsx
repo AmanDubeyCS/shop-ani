@@ -13,8 +13,8 @@ const FilterOption = ({ title, choices }) => {
       setSelectedChoices(selectedChoices.filter((item) => item !== choice));
     }
   };
+  console.log(selectedChoices)
 
-  // console.log(selectedChoices)
 
   return (
     <div className="flex flex-col">
@@ -38,8 +38,8 @@ const FilterOption = ({ title, choices }) => {
   );
 };
 
-const FilterSystem = ({ handleClose, data }) => {
-  console.log(data)
+const FilterSystem = ({ handleClose }) => {
+
   return (
     
     <div className="container">
@@ -51,10 +51,6 @@ const FilterSystem = ({ handleClose, data }) => {
         <FilterOption 
         title="Product Type" 
         choices={['Hoodie', 'Sweatshirts', 'Jacket', 'T-shirt', 'Oversized T-shirt', 'Dropcut T-shirt', 'Fullsleev T-shirt']}
-      />
-      <FilterOption 
-        title="Size" 
-        choices={['XS', 'S', 'M', 'L', 'XL', 'XXL']}
       />
       <FilterOption 
         title="Color" 

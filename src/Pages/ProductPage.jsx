@@ -7,10 +7,8 @@ import ProductDetails from '../Components/ProductDetails/ProductDetails';
 const ProductPage = ({data}) => {
     const {productId} = useParams();
     const product = data.find((e) => e.id === productId)  
-    console.log(product)
   return (
     <div>
-      <Breadcrums product ={product}/>
       <ProductDetails product={product}/>
     </div>
   )

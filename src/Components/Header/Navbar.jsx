@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="">
-      <section className="container justify-center items-center p-4">
+    <header className="container">
+      <section className=" justify-center items-center py-4">
         <div className="flex justify-between items-center">
           <div className="">
             <h1 className="text-3xl">Ani-Shop</h1>
@@ -31,7 +31,7 @@ const Navbar = () => {
           </div>
         </div>
       </section>
-      <nav className="container flex items-center px-4 py-2 border-t-2 border-cyan-400">
+      <nav className="flex items-center py-2 border-t-2 border-cyan-400">
         <ul className="flex gap-8">
             {navlist.map(menu =>{
                 return(

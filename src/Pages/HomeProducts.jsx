@@ -4,11 +4,6 @@ import Card from "../Components/Card/Card";
 import FilterBar from "../Components/ProductFilter/FilterBar";
 
 const HomeProducts = ({title, data}) => {
-  const menAndWomen = data.map((item) => item).filter((item) => (item.Gender === title || item.Gender === "Unisex"))
-  const kids = data.map((item) => item).filter((item) => item.Gender === "Kids")
-
-  // console.log(kids)
-  // console.log(menAndWomen)
 
   return (
     <section>
@@ -18,7 +13,7 @@ const HomeProducts = ({title, data}) => {
             <h1 className="text-xl text-black font-bold">{title}'s Section</h1>
           </div>
         </div>
-        {title === "Men" || "Women" ? <FilterBar data={menAndWomen}/> : <FilterBar data={kids}/>}
+        <FilterBar />
         <div className="flex flex-wrap justify-start pt-5">
           {data.map((item, index) => {
             if(title === "Men" || title === "Women" ){
@@ -32,7 +27,6 @@ const HomeProducts = ({title, data}) => {
               }
             }
           })}
-            {/* <Card list={data}/> */}
         </div>
         <div className="hidden">
           <FilterSystem />
@@ -43,3 +37,5 @@ const HomeProducts = ({title, data}) => {
 };
 
 export default HomeProducts;
+
+
