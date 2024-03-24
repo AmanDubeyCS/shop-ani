@@ -1,45 +1,65 @@
 import React from "react";
 import { IconUserCircle } from "@tabler/icons-react";
 import { IconShoppingCart } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import { navlist } from "./Navlist";
 import { Link } from "react-router-dom";
+import logo from "../../Assets/logo1.png";
 
 const Navbar = () => {
   return (
-    <header className="container">
+    <header className="bg-white shadow-sm rounded-l-lg rounded-r-lg"  >
+      <div className="container">
       <section className=" justify-center items-center py-4">
         <div className="flex justify-between items-center">
-          <div className="">
-            <h1 className="text-3xl">Ani-Shop</h1>
+         <Link to={"/"}>
+         <div className="w-[160px]">
+            <img src={logo} alt="" />
           </div>
-          <div className="flex justify-between gap-6 items-center">
-            <input
-              placeholder="Enter your search"
-              className=" border-2 outline-none rounded-lg px-6 py-1 text-base cursor-pointer transition"
-              type="text"
-            />
+         </Link> 
+          <div className="flex justify-between md:gap-6 items-center">
+            <div className="hidden md:flex gap-3 bg-[#f0f5ff] outline-none rounded-lg px-5 py-2 text-base cursor-pointer transition">
+              <IconSearch size={23} stroke={2} />
+              <input
+                placeholder="Enter your search"
+                className="bg-transparent outline-none "
+                type="text"
+              />
+            </div>
             <div className="flex gap-3">
               <h1 className="flex gap-1 text-lg items-center cursor-pointer ">
-                <IconUserCircle stroke={1.5}/>
-                Account
+                <IconUserCircle stroke={1.5} />
+                <span className="">Account</span>
               </h1>
               <h1 className="flex gap-1 text-lg items-center cursor-pointer">
-                <IconShoppingCart stroke={1.5}/>
-                Cart
+                <IconShoppingCart stroke={1.5} />
+                <span className="hidden sm:flex">Cart</span>
               </h1>
             </div>
           </div>
         </div>
       </section>
-      <nav className="flex items-center py-2 border-t-2 border-cyan-400">
-        <ul className="flex gap-8">
-            {navlist.map(menu =>{
-                return(
-                    <li key={menu.title}><Link to={menu.to}>{menu.title}</Link></li>
-                )
-            })}
+      <div className="flex md:hidden gap-3 bg-[#f0f5ff] outline-none rounded-lg px-5 py-2 text-base cursor-pointer transition">
+        <IconSearch size={23} stroke={2} />
+        <input
+          placeholder="Enter your search"
+          className="bg-transparent outline-none "
+          type="text"
+        />
+      </div>
+      <nav className="flex items-center pt-5 md:py-2 md:border-t-2 md:border-cyan-400 overflow-hidden overflow-y-scroll no-scrollbar">
+        <ul className="flex gap-5 md:gap-8">
+          {navlist.map((menu) => {
+            return (
+              <li key={menu.title} className="font-medium hover:text-red-600">
+                <Link to={menu.to}>{menu.title}</Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
+      </div>
+      
     </header>
   );
 };

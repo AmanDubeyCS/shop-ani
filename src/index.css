@@ -3,40 +3,52 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+}
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-header{
+
+header {
   /* background-color: #201f31; */
   color: black;
 
 }
 
-body{
-  /* background-color: #201f31; */
+body {
+  background-color: rgb(241, 242, 244);
   color: black;
 }
 
-.container{
+.container {
   max-width: 1500px;
   width: calc(100% - 2rem);
   margin: auto;
 }
 
-.aftr{
+.aftr {
   background: linear-gradient(0deg, #201f31 0, rgba(32, 31, 49, 0) 50%, #201f31 100%);
 }
 
 
-.mask{
+.mask {
   mask-image: linear-gradient(270deg, transparent 0, rgb(32, 31, 49) 30%, rgb(32, 31, 49) 70%, transparent);
   -webkit-mask-image: linear-gradient(270deg, transparent 0, rgb(32, 31, 49) 30%, rgb(32, 31, 49) 70%, transparent);
 }
 
-.container-grid {  display: grid;
+.container-grid {
+  display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 10px 10px;
@@ -46,9 +58,12 @@ body{
     "first second third";
 }
 
-.first { grid-area: first; }
+.first {
+  grid-area: first;
+}
 
-.second {  display: grid;
+.second {
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 10px 10px;
@@ -59,15 +74,25 @@ body{
   grid-area: second;
 }
 
-.top-left { grid-area: top-left; }
+.top-left {
+  grid-area: top-left;
+}
 
-.top-right { grid-area: top-right; }
+.top-right {
+  grid-area: top-right;
+}
 
-.bottom-left { grid-area: bottom-left; }
+.bottom-left {
+  grid-area: bottom-left;
+}
 
-.bottom-right { grid-area: bottom-right; }
+.bottom-right {
+  grid-area: bottom-right;
+}
 
-.third { grid-area: third; }
+.third {
+  grid-area: third;
+}
 
 @media (max-width: 768px) {
   .container-grid {
@@ -86,9 +111,17 @@ body{
       "top-left top-right"
       "bottom-left bottom-right";
   }
-  .third{
+
+  .third {
     height: 200px;
   }
+}
+
+@media (max-width: 1250px){
+  .swiper-button-next,
+  .swiper-button-prev{
+     display: none;
+}
 }
 
 /* .swiper{
@@ -113,4 +146,49 @@ body{
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  background-position: center;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  padding: 55px 20px;
+  top: var(--swiper-navigation-top-offset, 40%);
+}
+
+.swiper-button-prev {
+  background-image: url("D:\shop-ani\src\Assets\prev.png");
+}
+
+.swiper-button-next {
+  background-image: url("D:\shop-ani\src\Assets\next.png");
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: "";
+}
+
+.swiper-pagination-bullet {
+  width: 5px;
+  height: 5px;
+
+}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 0px);
+}
+
+.swiper-button-next{
+  right:  var(--swiper-navigation-sides-offset, 0px);
+  border-radius: 5px 0 0 5px;
+  left: auto;
+}
+
+.swiper-button-prev{
+  left: var(--swiper-navigation-sides-offset, 0px);
+  border-radius: 0 5px 5px 0; 
+  right: auto;
 }

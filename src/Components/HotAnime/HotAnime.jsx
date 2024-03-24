@@ -3,8 +3,8 @@ import img1 from "../../Assets/primary1.jpg";
 
 const HotAnime = () => {
   return (
-    <section>
-      <div className="container flex flex-col px-5 py-8 pb-3 rounded-md">
+    <section className="mt-6"> 
+      <div className="container flex flex-col px-5  pb-3 rounded-md bg-white">
         <div className="">
           <h1 className="text-2xl font-semibold my-8 border-b-2">
             Hot Anime Picks

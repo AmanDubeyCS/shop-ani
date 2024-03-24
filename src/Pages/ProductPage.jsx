@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Breadcrums from '../Components/Breadcrums/Breadcrums';
 import ProductDetails from '../Components/ProductDetails/ProductDetails';
 
 

@@ -33,7 +33,7 @@ const ProductDetails = ({ product }) => {
   ];
 
   return (
-    <div className="container flex">
+    <div className="container flex mt-4">
       {/* right side image and button section */}
       <div className="w-[40%] flex gap-5 flex-col">
         <div className="flex flex-row justify-between">
