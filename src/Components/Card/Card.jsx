@@ -6,8 +6,8 @@ const Card = ({ list }) => {
   return (
     <>
     <Link to={`/product/${list.id}`}>
-    <div className="w-[300px] h-[500px] bg-white bg-transparent overflow-hidden transition-all duration-200 ease-in-out hover:scale-105 hover:border"  >
-            <div className="h-[400px] overflow-hidden">
+    <div className=" bg-white bg-transparent overflow-hidden transition-all duration-200 ease-in-out hover:scale-105 hover:border"  >
+            <div className="overflow-hidden">
               <img src={list?.Image?.Front} alt="" className="h-full " />
             </div>
             <div className="flex flex-col gap-2 px-3 py-3">

@@ -15,10 +15,9 @@ const ProductCrousal = ({title, data}) => {
         <div className="">
           <h1 className="text-2xl font-semibold my-8 border-b-2 ">{title}</h1>
         </div>
-        <div className="w-full flex flex-wrap">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 md:grid-cols-4">
           {data.map((item, i) => {
-             if(i<10){return(<Card list={item} productInfo={product=>setProductDetails(product)}/>)}
-              
+             if(i<10){return(<Card key={item.id || i} list={item} productInfo={product=>setProductDetails(product)}/>)}
           })}
           
         </div>

@@ -13,8 +13,8 @@ const HomeProducts = ({title, data}) => {
             <h1 className="text-xl text-black font-bold">{title}'s Section</h1>
           </div>
         </div>
-        <FilterBar />
-        <div className="flex flex-wrap justify-start pt-5">
+        {/* <FilterBar /> */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 md:grid-cols-4 pt-5">
           {data.map((item, index) => {
             if(title === "Men" || title === "Women" ){
               if(item.Gender === title || item.Gender === "Unisex"){
