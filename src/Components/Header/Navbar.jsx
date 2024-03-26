@@ -27,14 +27,19 @@ const Navbar = () => {
               />
             </div>
             <div className="flex gap-3">
-              <h1 className="flex gap-1 text-lg items-center cursor-pointer ">
+              <Link to="/login">
+              <span className="flex gap-1 text-lg items-center cursor-pointer ">
                 <IconUserCircle stroke={1.5} />
                 <span className="">Account</span>
-              </h1>
-              <h1 className="flex gap-1 text-lg items-center cursor-pointer">
+              </span>
+              </Link>
+              <Link to="/cart">
+              <span className="flex gap-1 text-lg items-center cursor-pointer">
                 <IconShoppingCart stroke={1.5} />
                 <span className="hidden sm:flex">Cart</span>
-              </h1>
+              </span>
+              </Link>
+              
             </div>
           </div>
         </div>

@@ -8,8 +8,9 @@ import { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import AddProduct from "./Pages/AddProduct";
 import ProductPage from "./Pages/ProductPage";
-import UserLogin from "./UserAuth/UserLogin";
-import UserRegistration from "./UserAuth/UserRegistration";
+import UserLogin from "./Components/UserAuth/UserLogin";
+import UserRegistration from "./Components/UserAuth/UserRegistration";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
   const [list, setList] = useState([]);
@@ -66,6 +67,9 @@ function App() {
         <Route
           path="addproduct"
           element={<AddProduct dbRef={listCollection} />}
+        />
+        <Route path="/cart"
+        element={<Cart />}
         />
         <Route
           path="/login"
