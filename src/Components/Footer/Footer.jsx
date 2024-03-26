@@ -5,9 +5,9 @@ const FooterContent = ({title, options}) => {
   return(
     <ul className="w-[48%] md:w-[20%]">
       <li className="text-[12] text-[#878787] mb-3">{title}</li>
-      {options.map((option) => {
+      {options.map((option, index) => {
         return(
-          <Link><li className="text-[12] text-white">{option}</li></Link>
+          <Link key={index}><li className="text-[12] text-white">{option}</li></Link>
         )
       })}
     </ul>

@@ -8,7 +8,7 @@ import logo from "../../Assets/logo1.png";
 
 const Navbar = () => {
   return (
-    <header className="bg-white shadow-sm rounded-l-lg rounded-r-lg"  >
+    <header className="bg-white shadow-sm rounded-l-lg rounded-r-lg mb-4"  >
       <div className="container">
       <section className=" justify-center items-center py-4">
         <div className="flex justify-between items-center">

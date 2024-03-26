@@ -7,7 +7,7 @@ const ProductPage = ({data}) => {
     const {productId} = useParams();
     const product = data.find((e) => e.id === productId)  
   return (
-    <div>
+    <div className='mt-4'> 
       <ProductDetails product={product}/>
     </div>
   )
