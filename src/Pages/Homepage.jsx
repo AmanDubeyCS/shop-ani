@@ -11,12 +11,16 @@ import b2 from "../Assets/Banner-2.webp";
 import b3 from "../Assets/Banner-3.jpg";
 import ProductCrousal from "../Components/YouMayLike/ProductCrousal";
 import HotAnime from "../Components/HotAnime/HotAnime";
+import Newsletter from "../Components/Newsletter/Newsletter"
+import { useProductContext } from '../Context/ProductContext';
 
-const Homepage = ({ data }) => {
-  const latestDrop = data
+
+const Homepage = () => {
+  const { list } = useProductContext();
+  const latestDrop = list
     .map((item) => item)
     .filter((item) => item.Discount > 40);
-  const tShirt = data
+  const tShirt = list
     .map((item) => item)
     .filter((item) => item.Type === "T-shirt");
 
@@ -45,8 +49,9 @@ const Homepage = ({ data }) => {
 
       <ProductCrousal title="Latest Drop" data={latestDrop} />
       <HotAnime />
-      <ProductCrousal title="Today's pick" data={data} />
-      <ProductCrousal title="Best Of T-shirts" data={tShirt} />
+      <ProductCrousal title="Today's pick" data={list} />
+      <ProductCrousal title="T-shirts" data={tShirt} />
+      <Newsletter />
     </section>
   );
 };
