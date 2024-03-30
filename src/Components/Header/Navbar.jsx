@@ -52,7 +52,7 @@ const Navbar = () => {
           type="text"
         />
       </div>
-      <nav className="flex items-center pt-5 md:py-2 md:border-t-2 md:border-cyan-400 overflow-hidden ">
+      <nav className="flex items-center py-5 md:py-2 md:border-t-2 md:border-cyan-400 overflow-hidden ">
         <ul className="flex gap-5 md:gap-8 overflow-y-scroll no-scrollbar">
           {navlist.map((menu) => {
             return (

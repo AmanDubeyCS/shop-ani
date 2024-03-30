@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SocialAuthentication from '../SocialAuthentication/SocialAuthentication'
 import TextInput from '../TextInput/TextInput'
+import Button from '../Button/Button'
 
 const UserLogin = () => {
   return (
@@ -19,12 +20,7 @@ const UserLogin = () => {
             </div>
 
             <div className="text-center">
-              <button
-                className="inline-block w-full px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-102 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-red-400 to-red-500  hover:text-white"
-                type="button"
-              >
-                Login
-              </button>
+              <Button text="Login"/>
             </div>
             <p className="mt-4 mb-0 leading-normal text-sm">
               Don't have an account?{" "}

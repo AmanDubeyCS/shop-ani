@@ -1,13 +1,32 @@
 import React, { useState } from "react";
 import Breadcrums from "../Breadcrums/Breadcrums";
 import { IconTruckReturn } from "@tabler/icons-react";
-import { IconChevronRight } from '@tabler/icons-react';
+import { IconChevronRight } from "@tabler/icons-react";
 import { IconShoppingCart } from "@tabler/icons-react";
 import { IconCornerDownRightDouble } from "@tabler/icons-react";
+import Reviews from "../Reviews/Reviews";
+import ProductCrousal from "../YouMayLike/ProductCrousal";
+import { useProductContext } from "../../Context/ProductContext";
+import { IconPlus } from "@tabler/icons-react";
+import Button from "../Button/Button";
+import { CartState } from "../../Context/CartContext";
+import { Link } from "react-router-dom";
 
 const ProductDetails = ({ product }) => {
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
+  const { list } = useProductContext();
+  const data = list
+    .map((item) => item)
+    .filter((item) => item.Type === product.Type);
   const [image, setImage] = useState(product?.Image?.Front);
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const [featureVisibale, setFeatureVisable] = useState(false);
+  const [careVisibale, setcareVisable] = useState(false);
+  const [shippingVisibale, setShippingVisable] = useState(false);
+  const [returnsVisibale, setReturnsVisable] = useState(false);
 
   const handleImageChange = (e) => {
     setImage(e.target.src);
@@ -35,198 +54,291 @@ const ProductDetails = ({ product }) => {
   ];
 
   return (
-    <div className="container block md:flex md:p-4 bg-white">
-      {/* right side image and button section */}
-      <div className="w-full md:w-[40%] flex gap-5 flex-col">
-        <div className="flex flex-row justify-between">
-          <div className="w-[15%] flex flex-col gap-2">
-            {" "}
-            {/* All Images list */}
-            <img
-              onMouseOver={handleImageChange}
-              src={product?.Image?.Front}
-              alt="product"
-            />
-            {product?.Image?.Back != " " && (
-              <img
-                onMouseOver={handleImageChange}
-                src={product?.Image?.Back}
-                alt="product"
-              />
-            )}
-            {product?.Image?.Side != " " && (
-              <img
-                onMouseOver={handleImageChange}
-                src={product?.Image?.Side}
-                alt="product"
-              />
-            )}
-            {product?.Image?.Other != " " && (
-              <img
-                onMouseOver={handleImageChange}
-                src={product?.Image?.Other}
-                alt="product"
-              />
-            )}
-          </div>
-          <div className="w-[84%]">
-            {" "}
-            {/*Primary Image */}
-            <img src={image} alt="" />
-          </div>
-        </div>
-        <div className="fixed bottom-0 left-0 gap-0 w-full md:relative flex md:gap-2 justify-between">
-          {" "}
-          {/*Buttons ADD TO CART and BUY NOW */}
-          <button className="CartBtn w-[50%] h-12 bg-red-300 flex items-center justify-center cursor-pointer duration-[0.5s] overflow-hidden shadow-[0px_5px_10px_rgba(0,0,0,0.103)] relative md:rounded-xl border-[none] md:active:duration-[0.5s] md:active:scale-95">
-            <span className="IconContainer absolute left-[-50px] w-[30px] h-[30px] bg-transparent flex items-center justify-center overflow-hidden z-[2] duration-[0.5s] rounded-[50%]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="1em"
-                viewBox="0 0 576 512"
-                fill="rgb(17, 17, 17)"
-                className="cart"
-              >
-                <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path>
-              </svg>
-            </span>
-            <p className="text h-full w-fit flex items-center justify-center text-black z-[1] duration-[0.5s] text-[1.04em] font-semibold">
-              Add to Cart
-            </p>
-          </button>
-          <button className="CartBtn w-[50%] h-12 bg-red-400 flex items-center justify-center cursor-pointer duration-[0.5s] overflow-hidden shadow-[0px_5px_10px_rgba(0,0,0,0.103)] relative md:rounded-xl border-[none] md:active:duration-[0.5s] md:active:scale-95">
-            <span className="IconContainer absolute left-[-50px] w-[28px] h-[28px] bg-transparent flex items-center justify-center overflow-hidden z-[2] duration-[0.5s] rounded-[50%]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                version="1.1"
-                x="0px"
-                y="0px"
-                viewBox="0 0 100 125"
-                enableBackground="new 0 0 100 100"
-                xmlSpace="preserve"
-              >
-                <polygon
-                  fill="#000000"
-                  points="80.562,41.754 52.861,41.754 67.299,0 19.437,58.247 47.14,58.247 32.702,100 "
+    <section>
+      <div className="container">
+        <div className=" block md:flex md:p-4 bg-white">
+          {/* right side image and button section */}
+          <div className="w-full md:w-[30%] flex gap-5 flex-col p-3">
+            <div className="justify-between">
+              <div className="mb-5">
+                {" "}
+                {/*Primary Image */}
+                <img src={image} alt="" />
+              </div>
+              <div className="w-[25%] flex gap-5">
+                {" "}
+                {/* All Images list */}
+                <img
+                  onMouseOver={handleImageChange}
+                  src={product?.Image?.Front}
+                  alt="product"
                 />
-              </svg>
-            </span>
-            <p className="text h-full w-fit flex items-center justify-center text-black z-[1] duration-[0.5s] text-[1.04em] font-semibold">
-              BUY NOW
-            </p>
-          </button>
-          {/* <div className="flex w-[49%] gap-1 bg-[#ff9f00] text-lg justify-center items-center px-5 py-3 rounded-sm font-medium text-white cursor-pointer">
-            <IconShoppingCart size={25} stroke={2} />
-            ADD TO CART
-          </div>
-          <div className="flex w-[49%] gap-1 bg-[#fb641b] text-lg justify-center items-center  px-5 py-3 rounded-sm font-medium text-white cursor-pointer">
-            <IconCornerDownRightDouble size={25} stroke={2} />
-            BUY NOW
-          </div> */}
-        </div>
-      </div>
-
-      {/* Right Side product discription section */}
-      <div className="w-full md:px-7 md:w-[60%]">
-        <div className="hidden md:flex">
-        <Breadcrums product={product} /> {/*BreadCrums */}
-        </div>
-        <div className="px-4 md:px-0">
-          <h1 className="text-base text-gray-500 font-medium mb-2">
-            {" "}
-            {/*Product Type Info */}
-            {product.Type}
-          </h1>
-          <h1 className="text-[18px] leading-6 pb-2">{product.Name}</h1>{" "}
-          {/*Product Name Info */}
-        </div>
-        <p className="text-green-500 pb-2 text-sm px-4 md:px-0">Special Price</p>
-        <div className="text-[28px] font-medium text-black pb-2 px-4 md:px-0">
-          {" "}
-          {/*Product Price With Discount */}₹
-          {Math.round(product.Price - (product.Discount / 100) * product.Price)}{" "}
-          <span className="text-[16px] line-through text-gray-500 mr-3">
-            {product.Price}
-          </span>
-          <span className="text-[16px] text-green-500 ">
-            {product.Discount}%
-          </span>
-        </div>
-        <div className="flex gap-4 pb-5 px-4 md:px-0">
-          {" "}
-          {/*Product Sizes */}
-          <h1 className="font-medium text-sm text-gray-500 mr-8">Size</h1>
-          {sizes.map((size) => {
-            return (
-              <span className="border w-9 text-center cursor-pointer " key={size}>
-                {size}
-              </span>
-            );
-          })}
-        </div>
-        <div className="flex flex-col gap-2 pb-5">
-          {" "}
-          {/*Product Available Offers */}
-          <h1 className="font-medium flex justify-between items-center text-base border-y-2 px-4 py-3 md:px-0" onClick={() => setVisible((prev) => !prev)}>Available Offers  <span><IconChevronRight stroke={1} size={25} /></span></h1>
-         
-          <div className={`${ visible ? "block" : "hidden"} flex-col px-4 md:px-0`}>
-            {offers.map((offer, index) => {
-              return (
-                <span className=" py-1 flex text-sm" key={index}>
+                {product?.Image?.Back != " " && (
                   <img
-                    src="https://rukminim2.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-                    alt="Offers Image"
-                    className="w-[18px] h-[18px] mr-2"
+                    onMouseOver={handleImageChange}
+                    src={product?.Image?.Back}
+                    alt="product"
                   />
-                  <span className="font-medium pr-2">{offer.offerType}</span>{" "}
-                  <span className="line-clamp-1">{offer.offerDescription}</span>{" "}
-                  <span className="text-blue-500 ml-1 cursor-pointer">T&C</span>
+                )}
+                {product?.Image?.Side != " " && (
+                  <img
+                    onMouseOver={handleImageChange}
+                    src={product?.Image?.Side}
+                    alt="product"
+                  />
+                )}
+                {product?.Image?.Other != " " && (
+                  <img
+                    onMouseOver={handleImageChange}
+                    src={product?.Image?.Other}
+                    alt="product"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side product discription section */}
+          <div className="w-full md:px-7 md:w-[70%]">
+            <div className="hidden md:flex">
+              <Breadcrums product={product} /> {/*BreadCrums */}
+            </div>
+            <div className="px-4 md:px-0">
+              <h1 className="text-base text-gray-500 font-medium mb-2">
+                {" "}
+                {/*Product Type Info */}
+                {product.Type}
+              </h1>
+              <h1 className="text-[18px] leading-6 pb-2">{product.Name}</h1>{" "}
+              {/*Product Name Info */}
+            </div>
+            <p className="text-green-500 pb-2 text-sm px-4 md:px-0">
+              Special Price
+            </p>
+            <div className="text-[28px] font-medium text-black pb-2 px-4 md:px-0">
+              {" "}
+              {/*Product Price With Discount */}₹
+              {Math.round(
+                product.Price - (product.Discount / 100) * product.Price
+              )}{" "}
+              <span className="text-[16px] line-through text-gray-500 mr-3">
+                {product.Price}
+              </span>
+              <span className="text-[16px] text-green-500 ">
+                {product.Discount}%
+              </span>
+            </div>
+            <h1 className="font-mediu mt-7 mb-4  px-4 md:px-0">Size</h1>
+            <div className="grid grid-cols-3 md:flex gap-5 pb-5 px-4 md:px-0">
+              {" "}
+              {/*Product Sizes */}
+              {sizes.map((size) => {
+                return (
+                  <span
+                    className="border w-full py-3 text-center cursor-pointer "
+                    key={size}
+                  >
+                    {size}
+                  </span>
+                );
+              })}
+            </div>
+            {cart.some((p) => p.id === product.id) ? (
+              <Link to="/cart">
+                {" "}
+                <div className="w-full flex px-4 my-7">
+                  <Button text="Go To Cart" />
+                </div>
+              </Link>
+            ) : (
+              <div
+                className="w-full flex px-4 my-7"
+                onClick={() => {
+                  dispatch({
+                    type: "ADD_TO_CART",
+                    payload: product,
+                  });
+                }}
+              >
+                <Button text="Add To Cart" />
+              </div>
+            )}
+
+            <div className="flex flex-col gap-2 pb-5">
+              {" "}
+              {/*Product Available Offers */}
+              <h1
+                className="font-medium flex justify-between items-center text-base border-y-2 px-4 py-5 md:px-0 "
+                onClick={() => setVisible((prev) => !prev)}
+              >
+                Available Offers{" "}
+                <span>
+                  <IconChevronRight stroke={1} size={25} />
                 </span>
-              );
-            })}
+              </h1>
+              <div
+                className={`${
+                  visible ? "block" : "hidden"
+                } flex-col px-4 md:px-0`}
+              >
+                {offers.map((offer, index) => {
+                  return (
+                    <span className=" py-1 flex text-sm" key={index}>
+                      <img
+                        src="https://rukminim2.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
+                        alt="Offers Image"
+                        className="w-[18px] h-[18px] mr-2"
+                      />
+                      <span className="font-medium pr-2">
+                        {offer.offerType}
+                      </span>{" "}
+                      <span className="line-clamp-1">
+                        {offer.offerDescription}
+                      </span>{" "}
+                      <span className="text-blue-500 ml-1 cursor-pointer">
+                        T&C
+                      </span>
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex gap-2 items-center text-gray-500 px-4 md:px-0 text-sm md:text-base my-7">
+              <IconTruckReturn size={35} stroke={1} />
+              <p>
+                This product is eligible for return under our easy 15 day return
+                policy. No questions asked.
+              </p>
+            </div>
+            <ul className="px-5 my-7 md:px-0">
+              <li className="py-6 border-t-2">
+                <div>
+                  <div
+                    className="flex justify-between"
+                    onClick={() => setFeatureVisable((prev) => !prev)}
+                  >
+                    <h3 className="font-semibold">Information</h3>
+                    <IconPlus stroke={2} />
+                  </div>
+                  <div className={`${featureVisibale ? "" : "hidden"} py-5`}>
+                    <div className="flex">
+                      <h1 className="font-bold w-[20%]">Type</h1>{" "}
+                      <p>{product.Type}</p>
+                    </div>
+                    <div className="flex">
+                      <h1 className="font-bold w-[20%]">SLEEVE</h1>
+                      <p className="w-[80%]">{product.Sleeve}</p>
+                    </div>
+                    <div className="flex">
+                      <h1 className="font-bold w-[20%]">FABRIC</h1>{" "}
+                      <p>{product.Fabric}</p>
+                    </div>
+                    <div className="flex">
+                      <h1 className="font-bold w-[20%]">FIT</h1>{" "}
+                      <p>Regular Fit</p>
+                    </div>
+                    <div className="flex">
+                      <h1 className="font-bold w-[20%]">PATTERN</h1>{" "}
+                      <p>{product.Pattern}</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li className="py-6 border-t-2 ">
+                <div>
+                  <div
+                    className="flex justify-between"
+                    onClick={() => setcareVisable((prev) => !prev)}
+                  >
+                    <h3 className="font-semibold">Care </h3>
+                    <IconPlus stroke={2} />
+                  </div>
+                  <div className={`${careVisibale ? "" : "hidden"} py-5`}>
+                    <ul className="list-disc px-6 py-5">
+                      <li>Spot clean as needed</li>
+                      <li>Hand wash with mild soap</li>
+                      <li>Machine wash interior dividers</li>
+                      <li>Treat handle and tabs with leather conditioner</li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li className="py-6 border-t-2 ">
+                <div>
+                  <div
+                    className="flex justify-between"
+                    onClick={() => setShippingVisable((prev) => !prev)}
+                  >
+                    <h3 className="font-semibold">Shipping </h3>
+                    <IconPlus stroke={2} />
+                  </div>
+                  <div className={`${shippingVisibale ? "" : "hidden"} py-5`}>
+                    <ul className="list-disc px-6 py-5">
+                      <li>Free shipping on orders over $300</li>
+                      <li>International shipping available</li>
+                      <li>Expedited shipping options</li>
+                      <li>Signature required upon delivery</li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li className="py-6 border-t-2">
+                <div>
+                  <div
+                    className="flex justify-between"
+                    onClick={() => setReturnsVisable((prev) => !prev)}
+                  >
+                    <h3 className="font-semibold">Returns </h3>
+                    <IconPlus stroke={2} />
+                  </div>
+                  <div className={`${returnsVisibale ? "" : "hidden"} py-5`}>
+                    <ul className="list-disc px-6 py-5">
+                      <li>Easy return requests</li>
+                      <li>Pre-paid shipping label included</li>
+                      <li>10% restocking fee for returns</li>
+                      <li>60 day return window</li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            {/* <div className="flex flex-col gap-3 mt-4 border-y-4 px-4 md:px-0">
+              <h1 className="font-medium text-base ">Product Information</h1>
+              <table>
+                <tbody>
+                  <tr className="">
+                    <td>TYPE</td>
+                    <td>Round Neck</td>
+                  </tr>
+                  <tr className="">
+                    <td>SLEEVE</td>
+                    <td>{product.Sleeve}</td>
+                  </tr>
+                  <tr className="">
+                    <td>FABRIC</td>
+                    <td>{product.Fabric}</td>
+                  </tr>
+                  <tr className="">
+                    <td>FIT</td>
+                    <td>Regular Fit</td>
+                  </tr>
+                  <tr className="">
+                    <td>PACK OF</td>
+                    <td> 1</td>
+                  </tr>
+                  <tr className="">
+                    <td>PATTERN</td>
+                    <td>{product.Pattern}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> */}
           </div>
         </div>
-        <div className="flex gap-2 items-center text-gray-500 px-4 md:px-0 text-xs md:text-base">
-          <IconTruckReturn size={35} stroke={1} />
-          <p>
-            This product is eligible for return under our easy 15 day return
-            policy. No questions asked.
-          </p>
-        </div>
-        <div className="flex flex-col gap-3 mt-4 border-y-4 px-4 md:px-0">
-          <h1 className="font-medium text-base ">Product Information</h1>
-          <table>
-            <tbody>
-              <tr className="">
-                <td>TYPE</td>
-                <td>Round Neck</td>
-              </tr>
-              <tr className="">
-                <td>SLEEVE</td>
-                <td>{product.Sleeve}</td>
-              </tr>
-              <tr className="">
-                <td>FABRIC</td>
-                <td>{product.Fabric}</td>
-              </tr>
-              <tr className="">
-                <td>FIT</td>
-                <td>Regular Fit</td>
-              </tr>
-              <tr className="">
-                <td>PACK OF</td>
-                <td> 1</td>
-              </tr>
-              <tr className="">
-                <td>PATTERN</td>
-                <td>{product.Pattern}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <Reviews />
       </div>
-    </div>
+      <ProductCrousal title="People also buy" data={data} />
+    </section>
   );
 };
 

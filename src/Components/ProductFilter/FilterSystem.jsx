@@ -13,7 +13,6 @@ const FilterOption = ({ title, choices }) => {
       setSelectedChoices(selectedChoices.filter((item) => item !== choice));
     }
   };
-  console.log(selectedChoices)
 
 
   return (

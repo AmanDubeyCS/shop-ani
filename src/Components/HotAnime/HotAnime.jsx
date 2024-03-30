@@ -3,6 +3,7 @@ import img1 from "../../Assets/primary1.jpg";
 
 const HotAnime = () => {
   return (
+    
     <section className="mt-6"> 
       <div className="container flex flex-col px-5  pb-3 rounded-md bg-white">
         <div className="">
@@ -11,9 +12,8 @@ const HotAnime = () => {
           </h1>
         </div>
 
-        <div class="container-grid">
-
-          <div class="first relative">
+        <div className="container-grid">
+            <div className="first relative">
             <div className="bg-[rgba(0,0,0,0.3)] h-full absolute left-0 top-0 w-full"></div>
             <img
               src="https://i.ibb.co/RyGKHpF/naruto-image.jpg"
@@ -25,8 +25,8 @@ const HotAnime = () => {
             </p>
           </div>
 
-          <div class="second">
-            <div class="top-left relative">
+          <div className="second">
+            <div className="top-left relative">
               <div className="bg-[rgba(0,0,0,0.3)] h-full absolute left-0 top-0 w-full"></div>
               <img
                 src="https://i.ibb.co/4PGhFrG/Onepice.jpg"
@@ -37,7 +37,7 @@ const HotAnime = () => {
                 One Pice
               </p>
             </div>
-            <div class="top-right relative">
+            <div className="top-right relative">
               <div className="bg-[rgba(0,0,0,0.3)] h-full absolute left-0 top-0 w-full"></div>
               <img
                 src="https://i.ibb.co/p479mk3/sung-jin-woo-blue-background-hd-solo-leveling.jpg"
@@ -48,7 +48,7 @@ const HotAnime = () => {
                 Solo Leveling
               </p>
             </div>
-            <div class="bottom-left relative">
+            <div className="bottom-left relative">
               <div className="bg-[rgba(0,0,0,0.3)] h-full absolute left-0 top-0 w-full"></div>
               <img
                 src="https://i.ibb.co/tJwjNZp/tanjiro-kamado-and-hinokami-kagura-hd-demon-slayer-kimetsu-no-yaiba.jpg"
@@ -59,7 +59,7 @@ const HotAnime = () => {
                 Demon Slayer
               </p>
             </div>
-            <div class="bottom-right relative">
+            <div className="bottom-right relative">
               <div className="bg-[rgba(0,0,0,0.3)] h-full absolute left-0 top-0 w-full"></div>
               <img
                 src="https://i.ibb.co/sqShnrq/cainsaw.jpg"
@@ -72,7 +72,7 @@ const HotAnime = () => {
             </div>
           </div>
 
-          <div class="third relative">
+          <div className="third relative">
             <div className="bg-[rgba(0,0,0,0.3)] h-full absolute left-0 top-0 w-full"></div>
             <img
               src="https://i.ibb.co/Z2RFKsW/dragon-ball.png"

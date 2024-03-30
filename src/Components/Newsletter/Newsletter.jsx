@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button/Button";
 
 const Newsletter = () => {
   return (
@@ -16,12 +17,7 @@ const Newsletter = () => {
             type="email"
           />
 
-          <button
-            className="bg-gradient-to-r from-red-400 to-red-500 text-white font-bold py-2 px-4 rounded-md mt-4"
-            type="submit"
-          >
-            Subscribe
-          </button>
+          <Button text="Subscribe"/>
         </form>
 
         <div className="flex justify-center mt-4">

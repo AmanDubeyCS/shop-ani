@@ -2,7 +2,7 @@ import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Homepage from "./Pages/Homepage";
 import HomeProducts from "./Pages/HomeProducts";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { db } from "./Config/Firbase";
 import { collection } from "firebase/firestore";
 import AddProduct from "./Pages/AddProduct";
@@ -12,8 +12,17 @@ import UserRegistration from "./Components/UserAuth/UserRegistration";
 import Cart from "./Components/Cart/Cart";
 import Checkout from "./Components/Checkout/Checkout";
 import OrderConfirmation from "./Components/OrderConfirmation/OrderConfirmation";
+import { useEffect } from "react";
 
 function App() {
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+
   // const [list, setList] = useState([]);
 
   const listCollection = collection(db, "Products");
