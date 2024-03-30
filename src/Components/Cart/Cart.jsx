@@ -1,5 +1,6 @@
 import React from 'react'
 import { IconX } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   return (
@@ -11,22 +12,10 @@ const Cart = () => {
         <ul className='w-full md:w-[50%]'>
           <li className='flex py-8 border-b-2'>
             <div className='w-[25%]' >
-              <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg" alt="" />
-            </div>
-
-            <div className='flex flex-col text-base ml-6 justify-between w-[75%]'> 
-              <div className='flex justify-between '>
-                <div className='flex flex-col gap-1 w-[80%]'>
-                  <div>
-                    <h3 className='text-xl'>BASIC T-shirt</h3>
-                  </div>
-                  <div>
-                    <p className='text-zinc-500'>Type</p>
-                  </div>
-                  <p>32.00</p>
-                  <div className='md:hidden'>
+              <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg" alt="" className='w-full h-full'/>
+              <div className='md:hidden'>
                     <label htmlFor="quantity"></label>
-                    <select name="quantity" id="quantity" className='h-10 w-12 border border-black font-medium'>
+                    <select name="quantity" id="quantity" className='w-full text-center border border-black font-medium'>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -34,6 +23,19 @@ const Cart = () => {
                       <option value="5">5</option>
                     </select>
                   </div>
+            </div>
+
+            <div className='flex flex-col text-base ml-6 justify-between w-[75%]'> 
+              <div className='flex justify-between '>
+                <div className='flex flex-col gap-1 w-[80%]'>
+                  <div>
+                    <h3 className='text-xl line-clamp-1'>BASIC T-shirt</h3>
+                  </div>
+                  <div>
+                    <p className='text-zinc-500'>Type</p>
+                  </div>
+                  <p className='font-bold'>$32.00</p>
+                  
                 </div>
                 <div className='flex justify-between md:w-[50%] relative'>
                   <div className='hidden md:flex'>
@@ -52,16 +54,16 @@ const Cart = () => {
               <p>In Stock</p>
             </div>
           </li>
-          <li className='flex py-8 border-b-2'>
+          {/* <li className='flex py-8 border-b-2'>
             <div className='w-[25%]' >
-              <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg" alt="" />
+              <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg" alt="" className='w-full h-full'/>
             </div>
 
             <div className='flex flex-col text-base ml-6 justify-between w-[75%]'> 
               <div className='flex justify-between '>
                 <div className='flex flex-col gap-1 w-[50%]'>
                   <div>
-                    <h3 className='text-xl'>BASIC T-shirt</h3>
+                    <h3 className='text-xl line-clamp-1'>BASIC T-shirt</h3>
                   </div>
                   <div>
                     <p className='text-zinc-500'>Type</p>
@@ -75,7 +77,7 @@ const Cart = () => {
               </div>
               <p>In Stock</p>
             </div>
-          </li>
+          </li> */}
         </ul>
         <div className='p-8 bg-[#F9FAFB] rounded-xl md:w-[40%] mt-8 md:mt-0'> 
           <h2 className='text-lg font-bold'>Order Summary</h2>
@@ -98,9 +100,9 @@ const Cart = () => {
             </div>
           </dl>
           <div>
-            <button className="CartBtn w-full h-12 bg-red-500 flex items-center justify-center cursor-pointer duration-[0.5s] overflow-hidden shadow-[0px_5px_10px_rgba(0,0,0,0.103)] relative md:rounded-xl border-[none] md:active:duration-[0.5s] md:active:scale-95 font-semibold text-white">
+            <Link to="/checkout"><button className="CartBtn w-full h-12 bg-red-500 flex items-center justify-center cursor-pointer duration-[0.5s] overflow-hidden shadow-[0px_5px_10px_rgba(0,0,0,0.103)] relative md:rounded-xl border-[none] md:active:duration-[0.5s] md:active:scale-95 font-semibold text-white">
               Checkout
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>
