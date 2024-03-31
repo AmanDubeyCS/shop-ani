@@ -7,12 +7,13 @@ import { db } from "./Config/Firbase";
 import { collection } from "firebase/firestore";
 import AddProduct from "./Pages/AddProduct";
 import ProductPage from "./Pages/ProductPage";
-import UserLogin from "./Components/UserAuth/UserLogin";
-import UserRegistration from "./Components/UserAuth/UserRegistration";
+import UserRegistration from "./Components/UserAuth/UserAuth";
 import Cart from "./Components/Cart/Cart";
 import Checkout from "./Components/Checkout/Checkout";
 import OrderConfirmation from "./Components/OrderConfirmation/OrderConfirmation";
 import { useEffect } from "react";
+import CartPage from "./Pages/CartPage";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 function App() {
 
@@ -57,11 +58,12 @@ function App() {
           <Route path=":productId" element={<ProductPage />} />
         </Route>
         <Route path="addproduct" element={<AddProduct dbRef={listCollection} />}/>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<UserLogin />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/login" element={<UserRegistration />}/>
         <Route path="/registration" element={<UserRegistration />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orderconfirmation" element={<OrderConfirmation />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
 
       <Footer />

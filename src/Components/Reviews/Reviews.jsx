@@ -8,7 +8,7 @@ function Reviews() {
         <div className="lg:w-[40%]">
           <div className="items-center justify-between mb-6">
             <h2 className="text-xl font-semibold mb-4">Customer Reviews</h2>
-            <p className="text-sm gap-3 flex items-center">
+            <div className="text-sm gap-3 flex items-center">
               <div className="flex">
                 <IconStarFilled />
                 <IconStarFilled />
@@ -17,7 +17,7 @@ function Reviews() {
                 <IconStarFilled />
               </div>
               Based on 1624 reviews
-            </p>
+            </div>
           </div>
           <div className=" items-center mb-6">
             <div className="flex-1">

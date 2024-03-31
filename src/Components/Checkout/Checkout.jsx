@@ -4,6 +4,7 @@ import PaymentOptions from "../PymentOptions/PaymentOptions";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import { CartState } from "../../Context/CartContext";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 const Checkout = () => {
   const {
@@ -11,13 +12,20 @@ const Checkout = () => {
     dispatch,
   } = CartState();
 
-  const [total, setTotal] = useState()
+  const [total, setTotal] = useState();
 
   useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty, 0))
-  }, [cart])
+    setTotal(
+      cart.reduce(
+        (acc, curr) =>
+          acc +
+          Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty,
+        0
+      )
+    );
+  }, [cart]);
 
-  const tax = Math.round((total * 0.18) + total)
+  const tax = Math.round(total * 0.18 + total);
 
   const [selectedOption, setSelectedOption] = useState("standard");
 
@@ -49,11 +57,10 @@ const Checkout = () => {
               </select>
             </div>
             <div className="grid grid-cols-2 gap-4">
-            <TextInput type="text" placeholder="State / Province" />
-            <TextInput type="text" placeholder="Postal code" />
+              <TextInput type="text" placeholder="State / Province" />
+              <TextInput type="text" placeholder="Postal code" />
             </div>
             <TextInput type="tel" placeholder="Phone" />
-
           </div>
           <div className="border-b-2 pb-8">
             <h2 className="text-lg font-semibold mb-4">Delivery method</h2>
@@ -111,10 +118,10 @@ const Checkout = () => {
           <h2 className="text-lg font-semibold">Order summary</h2>
           <div className="space-y-4 bg-[#F9FAFB] rounded-md">
             <div className="px-6 border-b-2 p-5">
-            {cart.length > 0 ? (
-            cart.map((prod) => (
-                  <div className="w-full flex justify-between items-center">
-                      <div className="flex space-x-2">
+              {cart.length > 0 ? (
+                cart.map((prod) => (
+                  <div className="w-full flex justify-between items-center py-3 border-t-2" key={prod.id}>
+                    <div className="flex space-x-2">
                       <img
                         alt="Basic Tee"
                         className="h-16 w-16"
@@ -127,40 +134,30 @@ const Checkout = () => {
                         width="64"
                       />
                       <div>
-                        <p>{prod.Name}</p>
+                        <p className="line-clamp-1">{prod.Name}</p>
                         <p>{prod.Type}</p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <p>₹ {Math.round(
+                    <div className="flex flex-nowrap items-center space-x-2">
+                      <p>
+                        ₹
+                        {Math.round(
                           prod.Price - (prod.Discount / 100) * prod.Price
-                        )}</p>
+                        )}
+                      </p>
                     </div>
                   </div>
-            ))
-              ) : (<></>)}
-           </div>
-            <div className="space-y-2 px-6">
-              <div className="flex justify-between pb-2">
-                <p>Subtotal</p>
-                <p>₹ {Math.round(total)}</p>
-              </div>
-              <div className="flex justify-between pb-2">
-                <p>Shipping</p>
-                <p>₹ 50</p>
-              </div>
-              <div className="flex justify-between border-b-2 pb-2">
-                <p>Taxes</p>
-                <p>₹ {tax}</p>
-              </div>
-              <div className="flex justify-between font-semibold ">
-                <p>Total</p>
-                <p>₹ {Math.round(total + 50 + tax)}</p>
-              </div>
+                ))
+              ) : (
+                <></>
+              )}
             </div>
-            <div className="p-6 border-t-2">
-            <Link to='/orderconfirmation'><Button text="Place order"/></Link>
-            </div>
+            <OrderSummary
+              total={total}
+              tax={tax}
+              button="Place Order"
+              to="orderconfirmation"
+            />
           </div>
         </div>
       </div>

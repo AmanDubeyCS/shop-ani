@@ -10,8 +10,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ProductProvider>
       <BrowserRouter>
-      <CartContext >
-        <App />
+        <CartContext>
+            <App />
         </CartContext>
       </BrowserRouter>
     </ProductProvider>

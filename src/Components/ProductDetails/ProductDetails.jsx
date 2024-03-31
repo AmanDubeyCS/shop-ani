@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import Breadcrums from "../Breadcrums/Breadcrums";
 import { IconTruckReturn } from "@tabler/icons-react";
 import { IconChevronRight } from "@tabler/icons-react";
-import { IconShoppingCart } from "@tabler/icons-react";
-import { IconCornerDownRightDouble } from "@tabler/icons-react";
 import Reviews from "../Reviews/Reviews";
 import ProductCrousal from "../YouMayLike/ProductCrousal";
 import { useProductContext } from "../../Context/ProductContext";
-import { IconPlus } from "@tabler/icons-react";
 import Button from "../Button/Button";
 import { CartState } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
+import ProductDiscription from "../ProductDiscription/ProductDiscription";
 
 const ProductDetails = ({ product }) => {
   const {
@@ -23,10 +21,11 @@ const ProductDetails = ({ product }) => {
     .filter((item) => item.Type === product.Type);
   const [image, setImage] = useState(product?.Image?.Front);
   const [visible, setVisible] = useState(false);
-  const [featureVisibale, setFeatureVisable] = useState(false);
-  const [careVisibale, setcareVisable] = useState(false);
-  const [shippingVisibale, setShippingVisable] = useState(false);
-  const [returnsVisibale, setReturnsVisable] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  }
 
   const handleImageChange = (e) => {
     setImage(e.target.src);
@@ -130,18 +129,19 @@ const ProductDetails = ({ product }) => {
             </div>
             <h1 className="font-mediu mt-7 mb-4  px-4 md:px-0">Size</h1>
             <div className="grid grid-cols-3 md:flex gap-5 pb-5 px-4 md:px-0">
-              {" "}
-              {/*Product Sizes */}
-              {sizes.map((size) => {
-                return (
-                  <span
-                    className="border w-full py-3 text-center cursor-pointer "
-                    key={size}
-                  >
-                    {size}
-                  </span>
-                );
-              })}
+              {/* Product Sizes */}
+              {sizes.map((size) => (
+                <label
+                  key={size}
+                  className={`border w-full py-3 text-center cursor-pointer text-lg font-medium ${
+                    selectedSize === size ? "bg-[#4F46E5] text-white" : ""
+                  }`}
+                  onClick={() => handleSizeChange(size)}
+                >
+                  <input type="radio" name="size" className="hidden" />
+                  {size}
+                </label>
+              ))}
             </div>
             {cart.some((p) => p.id === product.id) ? (
               <Link to="/cart">
@@ -205,134 +205,12 @@ const ProductDetails = ({ product }) => {
             </div>
             <div className="flex gap-2 items-center text-gray-500 px-4 md:px-0 text-sm md:text-base my-7">
               <IconTruckReturn size={35} stroke={1} />
-              <p>
+              <span>
                 This product is eligible for return under our easy 15 day return
                 policy. No questions asked.
-              </p>
+              </span>
             </div>
-            <ul className="px-5 my-7 md:px-0">
-              <li className="py-6 border-t-2">
-                <div>
-                  <div
-                    className="flex justify-between"
-                    onClick={() => setFeatureVisable((prev) => !prev)}
-                  >
-                    <h3 className="font-semibold">Information</h3>
-                    <IconPlus stroke={2} />
-                  </div>
-                  <div className={`${featureVisibale ? "" : "hidden"} py-5`}>
-                    <div className="flex">
-                      <h1 className="font-bold w-[20%]">Type</h1>{" "}
-                      <p>{product.Type}</p>
-                    </div>
-                    <div className="flex">
-                      <h1 className="font-bold w-[20%]">SLEEVE</h1>
-                      <p className="w-[80%]">{product.Sleeve}</p>
-                    </div>
-                    <div className="flex">
-                      <h1 className="font-bold w-[20%]">FABRIC</h1>{" "}
-                      <p>{product.Fabric}</p>
-                    </div>
-                    <div className="flex">
-                      <h1 className="font-bold w-[20%]">FIT</h1>{" "}
-                      <p>Regular Fit</p>
-                    </div>
-                    <div className="flex">
-                      <h1 className="font-bold w-[20%]">PATTERN</h1>{" "}
-                      <p>{product.Pattern}</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li className="py-6 border-t-2 ">
-                <div>
-                  <div
-                    className="flex justify-between"
-                    onClick={() => setcareVisable((prev) => !prev)}
-                  >
-                    <h3 className="font-semibold">Care </h3>
-                    <IconPlus stroke={2} />
-                  </div>
-                  <div className={`${careVisibale ? "" : "hidden"} py-5`}>
-                    <ul className="list-disc px-6 py-5">
-                      <li>Spot clean as needed</li>
-                      <li>Hand wash with mild soap</li>
-                      <li>Machine wash interior dividers</li>
-                      <li>Treat handle and tabs with leather conditioner</li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li className="py-6 border-t-2 ">
-                <div>
-                  <div
-                    className="flex justify-between"
-                    onClick={() => setShippingVisable((prev) => !prev)}
-                  >
-                    <h3 className="font-semibold">Shipping </h3>
-                    <IconPlus stroke={2} />
-                  </div>
-                  <div className={`${shippingVisibale ? "" : "hidden"} py-5`}>
-                    <ul className="list-disc px-6 py-5">
-                      <li>Free shipping on orders over $300</li>
-                      <li>International shipping available</li>
-                      <li>Expedited shipping options</li>
-                      <li>Signature required upon delivery</li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li className="py-6 border-t-2">
-                <div>
-                  <div
-                    className="flex justify-between"
-                    onClick={() => setReturnsVisable((prev) => !prev)}
-                  >
-                    <h3 className="font-semibold">Returns </h3>
-                    <IconPlus stroke={2} />
-                  </div>
-                  <div className={`${returnsVisibale ? "" : "hidden"} py-5`}>
-                    <ul className="list-disc px-6 py-5">
-                      <li>Easy return requests</li>
-                      <li>Pre-paid shipping label included</li>
-                      <li>10% restocking fee for returns</li>
-                      <li>60 day return window</li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            {/* <div className="flex flex-col gap-3 mt-4 border-y-4 px-4 md:px-0">
-              <h1 className="font-medium text-base ">Product Information</h1>
-              <table>
-                <tbody>
-                  <tr className="">
-                    <td>TYPE</td>
-                    <td>Round Neck</td>
-                  </tr>
-                  <tr className="">
-                    <td>SLEEVE</td>
-                    <td>{product.Sleeve}</td>
-                  </tr>
-                  <tr className="">
-                    <td>FABRIC</td>
-                    <td>{product.Fabric}</td>
-                  </tr>
-                  <tr className="">
-                    <td>FIT</td>
-                    <td>Regular Fit</td>
-                  </tr>
-                  <tr className="">
-                    <td>PACK OF</td>
-                    <td> 1</td>
-                  </tr>
-                  <tr className="">
-                    <td>PATTERN</td>
-                    <td>{product.Pattern}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> */}
+            <ProductDiscription product={product}/>
           </div>
         </div>
         <Reviews />

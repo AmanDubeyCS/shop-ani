@@ -1,32 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { IconX } from "@tabler/icons-react";
+import { CartState } from "../../Context/CartContext";
+import OrderSummary from "../OrderSummary/OrderSummary";
+import { IconShoppingBag } from '@tabler/icons-react';
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { CartState } from "../../Context/CartContext";
+import { IconTrash } from '@tabler/icons-react';
 
 const Cart = () => {
+  const [total, setTotal] = useState();
+
   const {
     state: { cart },
     dispatch,
   } = CartState();
 
-  const [total, setTotal] = useState()
-
   useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty, 0))
-  }, [cart])
+    setTotal(
+      cart.reduce(
+        (acc, curr) =>
+          acc +
+          Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty,
+        0
+      )
+    );
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
-  const tax = Math.round((total * 0.18) + total)
+  const tax = Math.round(total * 0.18 + total);
+
   return (
-    <div className="container w-full bg-white md:p-8 p-2">
-      <div className="text-2xl font-bold border-b broder-zinc-500 md:w-[50%]">
-        CART
-      </div>
+    <div className="w-full bg-white md:p-8 p-2">
       <div className="w-full md:flex justify-between">
-        <ul className="w-full md:w-[50%]">
+        
           {cart.length > 0 ? (
             cart.map((prod) => (
-              <li className="flex py-8 border-b-2" key={prod.id}>
+              <div className="w-full md:w-[50%]">
+              <div className="flex py-8 border-b-2" key={prod.id}>
                 <div className="w-[25%]">
                   <img
                     src={prod?.Image?.Front}
@@ -36,18 +45,18 @@ const Cart = () => {
                   <div className="md:hidden">
                     <label htmlFor="quantity"></label>
                     <select
-                    value={prod.qty}
-                    onChange={(e) => {
-                      dispatch({
-                        type: "CHANGE_CARY_QTY",
-                        payload: {
-                          id: prod.id,
-                          qty: e.target.value
-                        }
-                      })
-                    }}
+                      value={prod.qty}
+                      onChange={(e) => {
+                        dispatch({
+                          type: "CHANGE_CART_QTY",
+                          payload: {
+                            id: prod.id,
+                            qty: e.target.value,
+                          },
+                        });
+                      }}
                       name="quantity"
-                      id="quantity"
+                      id="qty"
                       className="w-full text-center border border-black font-medium"
                     >
                       <option value="1">1</option>
@@ -63,12 +72,12 @@ const Cart = () => {
                   <div className="flex justify-between ">
                     <div className="flex flex-col gap-1 w-[80%]">
                       <div>
-                        <h3 className="text-xl line-clamp-1">{prod.Name}</h3>
+                        <h3 className="text-base line-clamp-1">{prod.Name}</h3>
                       </div>
                       <div>
                         <p className="text-zinc-500">{prod.Type}</p>
                       </div>
-                      <div className="text-[18px] font-medium text-black pb-2 px-4 md:px-0">
+                      <div className="text-[18px] font-medium text-black pb-2  md:px-0">
                         {" "}
                         {/*Product Price With Discount */}₹
                         {Math.round(
@@ -86,19 +95,19 @@ const Cart = () => {
                       <div className="hidden md:flex">
                         <label htmlFor="quantity"></label>
                         <select
-                         value={prod.qty}
-                         onChange={(e) => {
-                           dispatch({
-                             type: "CHANGE_CARY_QTY",
-                             payload: {
-                               id: prod.id,
-                               qty: e.target.value
-                             }
-                           })
-                         }}
+                          value={prod.qty}
+                          onChange={(e) => {
+                            dispatch({
+                              type: "CHANGE_CART_QTY",
+                              payload: {
+                                id: prod.id,
+                                qty: e.target.value,
+                              },
+                            });
+                          }}
                           name="quantity"
                           id="quantity"
-                          className="h-10 w-12 border border-black font-medium"
+                          className="block w-full px-4 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500"
                         >
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -108,7 +117,7 @@ const Cart = () => {
                         </select>
                       </div>
                       <div
-                        className="absolute right-0 top-0"
+                        className="absolute right-0 top-0 cursor-pointer"
                         onClick={() => {
                           dispatch({
                             type: "REMOVE_FROM_CART",
@@ -116,44 +125,46 @@ const Cart = () => {
                           });
                         }}
                       >
-                        <IconX stroke={2} size={25} />
+                        <IconTrash stroke={2} size={25}/>
                       </div>
                     </div>
                   </div>
                   <p>In Stock</p>
                 </div>
-              </li>
+              </div>
+              </div>
             ))
           ) : (
-            <div>nothig</div>
+            <div className="container flex items-center justify-center flex-col gap-2 p-4 h-[50dvh]">
+              <div className="flex flex-col items-center gap-2 text-center">
+              <IconShoppingBag stroke={2} size={75}/>
+                <div className="flex flex-col items-center gap-2">
+                  <h1 className="font-bold text-3xl tracking-tight">
+                    Your cart is empty
+                  </h1>
+                  <p className="text-gray-500 dark:text-gray-400">
+                    You haven't added any items to your cart yet
+                  </p>
+                </div>
+              </div>
+              <Link to="/">
+                <Button text="Continue Shopping" props={'p-5'} />
+              </Link>
+            </div>
           )}
-        </ul>
-        <div className="p-8 bg-[#F9FAFB] rounded-xl md:w-[40%] mt-8 md:mt-0">
-          <h2 className="text-lg font-bold">Order Summary</h2>
-          <dl className="mt-5">
-            <div className="flex justify-between py-4 border-b-2">
-              <dt>Subtotal</dt>
-              <dd>₹ {Math.round(total)}</dd>
-            </div>
-            <div className="flex justify-between py-4 border-b-2">
-              <dt>Shipping Estimate</dt>
-              <dd>₹ 50</dd>
-            </div>
-            <div className="flex justify-between py-4 border-b-2">
-              <dt>Tax Estimat</dt>
-              <dd>₹ {tax}</dd>
-            </div>
-            <div className="flex justify-between py-4 font-semibold">
-              <dt>Order Total</dt>
-              <dd>₹ {Math.round(total + 50 + tax)}</dd>
-            </div>
-          </dl>
-          <div>
-            <Link to="/checkout">
-              <Button text="Checkout" />
-            </Link>
+        {!cart.length < 1 && (
+          <div className="md:w-[40%]">
+            <h2 className="text-lg font-bold bg-[#F9FAFB] px-8 py-6">
+              Order Summary
+            </h2>
+            <OrderSummary
+              total={total}
+              tax={tax}
+              button="Checkout"
+              to="checkout"
+            />
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -44,28 +44,6 @@ function OrderConfirmation() {
               <p>$32.00</p>
             </div>
           </div>
-          <div className="flex justify-between items-center border-b-2 py-5">
-            <div className="flex space-x-2">
-              <img
-                alt="Basic Tee"
-                className="h-16 w-16"
-                height="64"
-                src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg"
-                style={{
-                  aspectRatio: "64/64",
-                  objectFit: "cover",
-                }}
-                width="64"
-              />
-              <div>
-                <p>Basic Tee</p>
-                <p>T-shirt</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <p>$32.00</p>
-            </div>
-          </div>
           <div className="space-y-2 py-6">
             <div className="flex justify-between pb-2">
               <p>Subtotal</p>
@@ -85,16 +63,16 @@ function OrderConfirmation() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between border-b-2 pb-10">
+        <div className="flex justify-between border-b-2 pb-10 pl-2">
           <div className="mt-8">
             <h3 className="text-lg font-semibold mb-4">Shipping Address</h3>
             <p>Kristin Watson</p>
             <p>7353 Cynthia Pass</p>
             <p>Toronto, ON N3Y 4H8</p>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 pl-2">
             <h3 className="text-lg font-semibold mb-4">Payment Information</h3>
-            <p className="mb-4">Ending with 4242</p>
+            <p className="mb-3">Ending with 4242</p>
             <p>Expires 12/21</p>
           </div>
         </div>

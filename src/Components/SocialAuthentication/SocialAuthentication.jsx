@@ -114,12 +114,12 @@ const SocialAuthentication = ({Auth}) => {
         <span className="ml-2">{Auth} with Facebook</span>
       </button>
 
-      <div class="w-full flex items-center justify-between mt-4">
-        <span class="w-[30%] border-b dark:border-gray-600 "></span>
-        <p class="text-xs text-gray-500 uppercase dark:text-gray-400">
+      <div className="w-full flex items-center justify-between mt-4">
+        <span className="w-[30%] border-b dark:border-gray-600 "></span>
+        <p className="text-xs text-gray-500 uppercase dark:text-gray-400">
           or continue with
         </p>
-        <span class="w-[30%] border-b dark:border-gray-600 "></span>
+        <span className="w-[30%] border-b dark:border-gray-600 "></span>
       </div>
     </div>
   );

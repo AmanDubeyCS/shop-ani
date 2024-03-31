@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IconUserCircle } from "@tabler/icons-react";
 import { IconShoppingCart } from "@tabler/icons-react";
 import { IconSearch } from "@tabler/icons-react";
 import { navlist } from "./Navlist";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../Assets/logo1.png";
+import { auth } from "../../Config/Firbase";
+
+
 
 const Navbar = () => {
+  const [currentUser, setCurrentUser] = useState()
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      setCurrentUser(user)
+    })
+  }, [])
   return (
     <header className="bg-white shadow-sm rounded-l-lg rounded-r-lg mb-4"  >
       <div className="container">
@@ -27,12 +37,19 @@ const Navbar = () => {
               />
             </div>
             <div className="flex gap-3">
-              <Link to="/login">
+             {currentUser && <Link to="/profile">
               <span className="flex gap-1 text-lg items-center cursor-pointer ">
                 <IconUserCircle stroke={1.5} />
                 <span className="">Account</span>
               </span>
-              </Link>
+              </Link>}
+              {!currentUser && <Link to="/registration">
+              <span className="flex gap-1 text-lg items-center cursor-pointer ">
+                <IconUserCircle stroke={1.5} />
+                <span className="">Account</span>
+              </span>
+              </Link>}
+
               <Link to="/cart">
               <span className="flex gap-1 text-lg items-center cursor-pointer">
                 <IconShoppingCart stroke={1.5} />
