@@ -12,6 +12,7 @@ const UserRegistration = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false)
   const naviagate = useNavigate()
   // const [userCredentials, setUserCredentials] = useState({});
 
@@ -23,9 +24,12 @@ const UserRegistration = () => {
     setIsSignUpActive((prev) => !prev)
   }
 
+ 
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const userCredential = await createUserWithEmailAndPassword(auth, email,password);
       const user = userCredential.user;
       localStorage.setItem('token', user.accessToken);
@@ -36,11 +40,13 @@ const UserRegistration = () => {
       const errorMassage = error.message;
       console.log(erroeCode, errorMassage);
     }
+    setLoading(false)
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const userCredential = await signInWithEmailAndPassword(auth, email,password);
       const user = userCredential.user;
       localStorage.setItem('token', user.accessToken);
@@ -51,21 +57,22 @@ const UserRegistration = () => {
       const errorMassage = error.message;
       console.log(erroeCode, errorMassage);
     }
+    setLoading(false)
   };
 
   return (
     <div className="container w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
       <div className="w-full md:w-[50%] relative z-0 flex flex-col min-w-0 break-words ">
         <div className="p-6 mb-0 text-center font-semibold text-lg bg-white border-b-0 rounded-t-2xl">
-         {isSignUpActive && <h5>Register</h5>}
-         {!isSignUpActive && <h5>Login</h5>}
+         {!isSignUpActive && <h5>Register</h5>}
+         {isSignUpActive && <h5>Login</h5>}
         </div>
-        {isSignUpActive && <SocialAuthentication Auth="Sign Up" />}
-        {!isSignUpActive && <SocialAuthentication Auth="Sign In" />}
+        {!isSignUpActive && <SocialAuthentication Auth="Sign Up" />}
+        {isSignUpActive && <SocialAuthentication Auth="Sign In" />}
         <div className="flex-auto p-6">
-          <form onSubmit={isSignUpActive ? handleRegister : handleLogin}>
+          <form onSubmit={!isSignUpActive ? handleRegister : handleLogin}>
             <div className="mb-4 flex flex-col gap-4">
-              {isSignUpActive && <TextInput
+              {!isSignUpActive && <TextInput
                 name="name"
                 placeholder="Name"
                 type="text"
@@ -90,7 +97,7 @@ const UserRegistration = () => {
                 }}
               />
             </div>
-            {isSignUpActive && <div className="min-h-6 pl-7 mb-0.5 block">
+            {!isSignUpActive && <div className="min-h-6 pl-7 mb-0.5 block">
               <input
                 checked={checked}
                 value=""
@@ -116,12 +123,14 @@ const UserRegistration = () => {
               </label>
             </div>}
 
-            <div className="mt-5">
-              {isSignUpActive && <Button
+            <div className="mt-5" >
+              {!isSignUpActive && <Button
+                disabled ={loading}
                 type="submit"
                 text="Sign up"
               />}
-              {!isSignUpActive && <Button
+              {isSignUpActive && <Button
+              disabled ={loading}
                 type="submit"
                 text="Login"
               />}

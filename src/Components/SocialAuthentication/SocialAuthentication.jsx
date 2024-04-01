@@ -1,6 +1,34 @@
-import React from "react";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { auth } from "../../Config/Firbase";
+import { useNavigate } from "react-router-dom";
 
-const SocialAuthentication = ({Auth}) => {
+const SocialAuthentication = ({ Auth }) => {
+  const [loggedIn, setLoggedIn] = useState(null)
+  const navigate = useNavigate()
+  const provider = new GoogleAuthProvider()
+  const signUpUsingGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+      setLoggedIn(true)
+  };
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setLoggedIn(user);
+    });
+  }, []);
+  
+  loggedIn && loggedIn.uid && navigate("/")
   return (
     <div className="flex flex-wrap gap-4 px-3 -mx-3 sm:px-6 xl:px-12">
       <button className="flex items-center justify-center py-2 bg-white hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mt-4">
@@ -17,7 +45,7 @@ const SocialAuthentication = ({Auth}) => {
         <span className="ml-2">{Auth} with Apple</span>
       </button>
 
-      <button className="flex items-center justify-center py-2 bg-white hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+      <button className="flex items-center justify-center py-2 bg-white hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" onClick={signUpUsingGoogle}>
         <svg
           viewBox="0 0 24 24"
           height="25"

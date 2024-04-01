@@ -27,7 +27,7 @@ function Reviews() {
                 </span>
                 <div className="bg-gray-200 w-2/3 h-5 rounded-md">
                   <div
-                    className="bg-yellow-400 h-full rounded-md"
+                    className="bg-black h-full rounded-md"
                     style={{ width: "63%" }}
                   ></div>
                 </div>
@@ -39,7 +39,7 @@ function Reviews() {
                 </span>
                 <div className="bg-gray-200 w-2/3 h-5 rounded-md">
                   <div
-                    className="bg-yellow-400 h-full rounded-md"
+                    className="bg-black h-full rounded-md"
                     style={{ width: "10%" }}
                   ></div>
                 </div>
@@ -51,7 +51,7 @@ function Reviews() {
                 </span>
                 <div className="bg-gray-200 w-2/3 h-5 rounded-md">
                   <div
-                    className="bg-yellow-400 h-full rounded-md"
+                    className="bg-black h-full rounded-md"
                     style={{ width: "6%" }}
                   ></div>
                 </div>
@@ -63,7 +63,7 @@ function Reviews() {
                 </span>
                 <div className="bg-gray-200 w-2/3 h-5 rounded-md">
                   <div
-                    className="bg-yellow-400 h-full rounded-md"
+                    className="bg-black h-full rounded-md"
                     style={{ width: "12%" }}
                   ></div>
                 </div>
@@ -75,7 +75,7 @@ function Reviews() {
                 </span>
                 <div className="bg-gray-200 w-2/3 h-5 rounded-md">
                   <div
-                    className="bg-yellow-400 h-full rounded-md"
+                    className="bg-black h-full rounded-md"
                     style={{ width: "9%" }}
                   ></div>
                 </div>

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import PaymentOptions from "../PymentOptions/PaymentOptions";
-import { Link } from "react-router-dom";
-import Button from "../Button/Button";
 import { CartState } from "../../Context/CartContext";
 import OrderSummary from "../OrderSummary/OrderSummary";
+import AddressForm from "../AddressForm/AddressForm";
 
 const Checkout = () => {
   const {
     state: { cart },
-    dispatch,
   } = CartState();
 
   const [total, setTotal] = useState();
@@ -32,6 +30,7 @@ const Checkout = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
   return (
     <div className="container bg-white p-4 md:p-8">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
@@ -40,28 +39,10 @@ const Checkout = () => {
             <h2 className="text-lg font-semibold pb-2">Contact information</h2>
             <TextInput type="email" placeholder="Email address" />
           </div>
-          <div className="border-b-2 pb-8">
-            <h2 className="text-lg font-semibold pb-2">Shipping information</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-              <TextInput type="text" placeholder="First name" />
-              <TextInput type="text" placeholder="Last name" />
-            </div>
-            <TextInput type="text" placeholder="Company" />
-            <TextInput type="text" placeholder="Address" />
-            <TextInput type="text" placeholder="Apartment, suite, etc." />
-            <div className="grid grid-cols-2 gap-4">
-              <TextInput type="text" placeholder="City" />
-              <select className="border border-solid border-gray-300 rounded-lg outline-none mb-3 py-2 px-3">
-                <option value="united-states">United States</option>
-                <option value="canada">Canada</option>
-              </select>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <TextInput type="text" placeholder="State / Province" />
-              <TextInput type="text" placeholder="Postal code" />
-            </div>
-            <TextInput type="tel" placeholder="Phone" />
+          <div className="border-b-2"> 
+            <AddressForm />
           </div>
+
           <div className="border-b-2 pb-8">
             <h2 className="text-lg font-semibold mb-4">Delivery method</h2>
             <div className="flex flex-col md:flex-row gap-4 w-full">
@@ -120,7 +101,10 @@ const Checkout = () => {
             <div className="px-6 border-b-2 p-5">
               {cart.length > 0 ? (
                 cart.map((prod) => (
-                  <div className="w-full flex justify-between items-center py-3 border-t-2" key={prod.id}>
+                  <div
+                    className="w-full flex justify-between items-center py-3 border-t-2"
+                    key={prod.id}
+                  >
                     <div className="flex space-x-2">
                       <img
                         alt="Basic Tee"

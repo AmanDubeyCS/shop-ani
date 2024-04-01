@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CartState } from "../../Context/CartContext";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 function OrderConfirmation() {
+  const {
+    state: { cart },
+    dispatch, total, tax
+  } = CartState();
+
+  // const [total, setTotal] = useState();
+
+  // useEffect(() => {
+  //   setTotal(
+  //     cart.reduce(
+  //       (acc, curr) =>
+  //         acc +
+  //         Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty,
+  //       0
+  //     )
+  //   );
+  // }, [cart]);
+
+  // const tax = Math.round(total * 0.18 + total);
   return (
     <div className="md:container md:flex mx-auto md:px-4 md:py-8">
       <div className="md:w-[80%]">
@@ -21,49 +42,54 @@ function OrderConfirmation() {
         <h3 className="text-base font-semibold mb-2">Tracking number</h3>
         <p className="text-base text-blue-400 mb-6">515487875568458128</p>
 
-        <div className="space-y-4 rounded-md">
-          <div className="flex justify-between items-center border-b-2 py-5">
-            <div className="flex space-x-2">
-              <img
-                alt="Basic Tee"
-                className="h-16 w-16"
-                height="64"
-                src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg"
-                style={{
-                  aspectRatio: "64/64",
-                  objectFit: "cover",
-                }}
-                width="64"
-              />
-              <div>
-                <p>Basic Tee</p>
-                <p>T-shirt</p>
-              </div>
+        <div className="lg:col-span-2">
+          <h2 className="text-lg font-semibold">Order summary</h2>
+          <div className="space-y-4 bg-[#F9FAFB] rounded-md">
+            <div className="px-6 border-b-2 p-5">
+              {cart.length > 0 ? (
+                cart.map((prod) => (
+                  <div className="w-full flex justify-between items-center py-3 border-t-2" key={prod.id}>
+                    <div className="flex space-x-2">
+                      <img
+                        alt="Basic Tee"
+                        className="h-16 w-16"
+                        height="64"
+                        src={prod?.Image?.Front}
+                        style={{
+                          aspectRatio: "64/64",
+                          objectFit: "cover",
+                        }}
+                        width="64"
+                      />
+                      <div>
+                        <p className="line-clamp-1">{prod.Name}</p>
+                        <p>{prod.Type}</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-nowrap items-center space-x-2">
+                      <p>
+                        ₹
+                        {Math.round(
+                          prod.Price - (prod.Discount / 100) * prod.Price
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
             </div>
-            <div className="flex items-center space-x-2">
-              <p>$32.00</p>
-            </div>
-          </div>
-          <div className="space-y-2 py-6">
-            <div className="flex justify-between pb-2">
-              <p>Subtotal</p>
-              <p>$64.00</p>
-            </div>
-            <div className="flex justify-between pb-2">
-              <p>Shipping</p>
-              <p>$5.00</p>
-            </div>
-            <div className="flex justify-between border-b-2 pb-2">
-              <p>Taxes</p>
-              <p>$5.52</p>
-            </div>
-            <div className="flex justify-between font-semibold ">
-              <p>Total</p>
-              <p>$75.52</p>
-            </div>
+            <OrderSummary
+              total={total}
+              tax={tax}
+              button=""
+              hidden={true}
+              to="orderconfirmation"
+            />
           </div>
         </div>
-        <div className="flex justify-between border-b-2 pb-10 pl-2">
+        {/* <div className="flex justify-between border-b-2 pb-10 pl-2">
           <div className="mt-8">
             <h3 className="text-lg font-semibold mb-4">Shipping Address</h3>
             <p>Kristin Watson</p>
@@ -75,10 +101,10 @@ function OrderConfirmation() {
             <p className="mb-3">Ending with 4242</p>
             <p>Expires 12/21</p>
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-end mt-5">
           <Link to="/">
-            <button className="text-blue-400 ">Continue Shopping</button>
+            <button className="text-blue-400 " onClick={() => dispatch({type: 'CLEAR_CART'})}>Continue Shopping</button>
           </Link>
         </div>
       </div>

@@ -3,9 +3,11 @@ import Button from "../Button/Button";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Config/Firbase";
 import { useNavigate } from "react-router-dom";
+import AddressForm from "../AddressForm/AddressForm";
 
 const UserProfile = () => {
   const [currentUser, setCurrentUser] = useState()
+  const [addAddressForm, setAddAddressForm] = useState(false)
 
   const navigate = useNavigate()
 
@@ -22,7 +24,7 @@ const UserProfile = () => {
     navigate('/')
   }
   return (
-    <section className="container ">
+    <section className="container">
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm bg-white">
         <div className="p-6 flex flex-row items-center space-y-0 justify-between">
           <h3 className="text-2xl font-semibold whitespace-nowrap leading-none tracking-tight">
@@ -156,90 +158,15 @@ const UserProfile = () => {
             Address
           </h3>
         </div>
+        <div className={`w-[60%] m-auto ${addAddressForm ? "": "hidden"}`}>
+          <AddressForm />
+        </div>
         <div className="w-[50%] m-auto pb-6">
-          <Button text="Add Address" />
+          <Button text="Add Address" onClick={() => setAddAddressForm(true)}/>
         </div>
       </div>
+      
     </section>
-
-    //      </Button> */}
-    //     </div>
-    //     <div classNameName="grid gap-4 md:gap-2">
-    //       <div classNameName="grid md:grid-cols-3 gap-4">
-    //         <div classNameName="flex items-center">
-    //           <div classNameName="w-12 h-12 relative rounded-full overflow-hidden md:w-24 md:h-24">
-    //             <img
-    //               alt="Avatar"
-    //               classNameName="rounded-full object-cover"
-    //               height="100"
-    //               src="/placeholder.svg"
-    //               style={{
-    //                 aspectRatio: "100/100",
-    //                 objectFit: "cover",
-    //               }}
-    //               width="100"
-    //             />
-    //           </div>
-    //         </div>
-    //         <div classNameName="grid gap-1 text-sm md:col-span-2 md:text-base">
-    //           <div classNameName="font-semibold">Sophia Anderson</div>
-    //           <div classNameName="text-gray-500 dark:text-gray-400">sophia@example.com</div>
-    //           <div>23 total orders</div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div>
-    //     <div>
-    //       <h2 classNameName='text-2xl font-semibold'>Order history</h2>
-    //     </div>
-    //     <div>
-    //       <div classNameName="flex flex-col gap-4 md:gap-2">
-    //         <div classNameName="grid items-center gap-2 text-sm md:grid-cols-3 md:gap-1">
-    //           <div classNameName="font-medium">Order #3102</div>
-    //           <div classNameName="text-gray-500 dark:text-gray-400">June 23, 2022</div>
-    //           <div classNameName="ml-auto font-medium">$150.00</div>
-    //         </div>
-    //         <hr />
-    //         <div classNameName="grid items-center gap-2 text-sm md:grid-cols-3 md:gap-1">
-    //           <div classNameName="font-medium">Order #3101</div>
-    //           <div classNameName="text-gray-500 dark:text-gray-400">June 22, 2022</div>
-    //           <div classNameName="ml-auto font-medium">$120.00</div>
-    //         </div>
-    //         <hr />
-    //         <div classNameName="grid items-center gap-2 text-sm md:grid-cols-3 md:gap-1">
-    //           <div classNameName="font-medium">Order #3100</div>
-    //           <div classNameName="text-gray-500 dark:text-gray-400">June 21, 2022</div>
-    //           <div classNameName="ml-auto font-medium">$100.00</div>
-    //         </div>
-    //         <hr />
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div>
-    //     <div>
-    //       <h2 classNameName='text-2xl font-semibold'>Payment methods</h2>
-    //     </div>
-    //     <div>
-    //       <div classNameName="flex flex-col gap-2">
-    //         <div classNameName="grid items-center gap-2 text-sm md:grid-cols-3 md:gap-1">
-    //           <div classNameName="font-medium">Visa ending in 4242</div>
-    //           <div classNameName="text-gray-500 dark:text-gray-400">Sophia Anderson</div>
-    //           <div classNameName="ml-auto font-medium">Primary</div>
-    //         </div>
-    //         <hr />
-    //         <div classNameName="grid items-center gap-2 text-sm md:grid-cols-3 md:gap-1">
-    //           <div classNameName="font-medium">Mastercard ending in 1234</div>
-    //           <div classNameName="text-gray-500 dark:text-gray-400">Sophia Anderson</div>
-    //           <div classNameName="ml-auto">
-    //             <span>Expiring soon</span>
-    //           </div>
-    //         </div>
-    //         <hr />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from "react";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { IconFileDatabase } from "@tabler/icons-react";
 
-const OrderSummary = ({total, tax, shipping = "50", button, to}) => {
+const OrderSummary = ({total, tax, shipping = "50", button, to, hidden=false, onClick}) => {
   return (
     <div className="px-8 bg-[#F9FAFB] rounded-xl pb-7">
       <dl className="">
@@ -23,9 +24,9 @@ const OrderSummary = ({total, tax, shipping = "50", button, to}) => {
           <dd>₹{Math.round(total + shipping + tax)}</dd>
         </div>
       </dl>
-      <div>
+      <div className={`${hidden? 'hidden' : ""}`}>
         <Link to={`/${to}`}>
-          <Button text={`${button}`} />
+          <Button text={`${button}`} onClick={onClick}/>
         </Link>
       </div>
     </div>

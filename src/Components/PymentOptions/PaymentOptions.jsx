@@ -19,7 +19,7 @@ function PaymentOptions() {
               checked={paymentOption === "UPI"}
               onChange={handlePayment}
             />
-            <sapn className="ml-5 text-base font-semibold">UPI</sapn>
+            <span className="ml-5 text-base font-semibold">UPI</span>
           </label>
           <div className={`p-5 ${paymentOption == "UPI" ? "" : "hidden"}`}>
             <TextInput placeholder="Enter UPI ID" />
@@ -34,9 +34,9 @@ function PaymentOptions() {
               checked={paymentOption === "Card"}
               onChange={handlePayment}
             />
-            <sapn className="ml-5 text-base font-semibold">
+            <span className="ml-5 text-base font-semibold">
               Credit / Debit / ATM Card
-            </sapn>
+            </span>
           </label>
           <div className={`p-5 ${paymentOption == "Card" ? "" : "hidden"}`}>
             <TextInput placeholder="Card number" />
@@ -56,7 +56,7 @@ function PaymentOptions() {
               checked={paymentOption === "Net Banking"}
               onChange={handlePayment}
             />
-            <sapn className="ml-5 text-base font-semibold">Net Banking</sapn>
+            <span className="ml-5 text-base font-semibold">Net Banking</span>
           </label>
         </li>
         <li className="p-5 border-b-2">
@@ -68,9 +68,9 @@ function PaymentOptions() {
               checked={paymentOption === "COD"}
               onChange={handlePayment}
             />
-            <sapn className="ml-5 text-base font-semibold">
+            <span className="ml-5 text-base font-semibold">
               Cash on Delivery
-            </sapn>
+            </span>
           </label>
         </li>
         <li className="p-5">
@@ -82,9 +82,9 @@ function PaymentOptions() {
               checked={paymentOption === "EMI"}
               onChange={handlePayment}
             />
-            <sapn className="ml-5 text-base font-semibold">
+            <span className="ml-5 text-base font-semibold">
               EMI (Easy Installments)
-            </sapn>
+            </span>
           </label>
         </li>
       </ul>
