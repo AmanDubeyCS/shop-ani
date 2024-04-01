@@ -4,8 +4,8 @@ import Cart from "../Components/Cart/Cart";
 
 const CartPage = () => {
   return (
-    <div className="container">
-      <div className="text-2xl font-bold border-b broder-zinc-500 bg-white mb-2 text-center py-5">
+    <div className="">
+      <div className="container text-2xl font-bold border-b broder-zinc-500 bg-white text-center py-5">
         Shopping Cart
       </div>
       <Cart />

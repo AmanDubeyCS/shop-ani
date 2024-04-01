@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../Config/Firbase";
 import { useNavigate } from "react-router-dom";
 import AddressForm from "../AddressForm/AddressForm";
+import profileImage from "../../Assets/profileImage.png"
 
 const UserProfile = () => {
   const [currentUser, setCurrentUser] = useState()
@@ -44,7 +45,7 @@ const UserProfile = () => {
             <div className="flex items-center">
               <div className="w-12 h-12 relative rounded-full overflow-hidden md:w-24 md:h-24">
                 <img
-                  src="https://vexacore.vercel.app/assets/p2-UWzFuWPd.jpg"
+                  src={profileImage}
                   width="100"
                   height="100"
                   alt="Avatar"
@@ -54,11 +55,11 @@ const UserProfile = () => {
               </div>
             </div>
             <div className="grid gap-1 text-sm md:col-span-2 md:text-base">
-              <div className="font-semibold">Sophia Anderson</div>
+              <div className="font-semibold">{currentUser && currentUser.displayName ? currentUser.displayName : "Name"  }</div>
               <div className="text-gray-500 dark:text-gray-400">
                 {currentUser && currentUser.email}
               </div>
-              <div>23 total orders</div>
+              <div>3 total orders</div>
             </div>
           </div>
         </div>
@@ -77,7 +78,7 @@ const UserProfile = () => {
               <div className="text-gray-500 dark:text-gray-400">
                 June 23, 2022
               </div>
-              <div className="ml-auto font-medium">$150.00</div>
+              <div className="ml-auto font-medium">150.00</div>
             </div>
             <div
               data-orientation="horizontal"
@@ -89,7 +90,7 @@ const UserProfile = () => {
               <div className="text-gray-500 dark:text-gray-400">
                 June 22, 2022
               </div>
-              <div className="ml-auto font-medium">$120.00</div>
+              <div className="ml-auto font-medium">120.00</div>
             </div>
             <div
               data-orientation="horizontal"
@@ -101,7 +102,7 @@ const UserProfile = () => {
               <div className="text-gray-500 dark:text-gray-400">
                 June 21, 2022
               </div>
-              <div className="ml-auto font-medium">$100.00</div>
+              <div className="ml-auto font-medium">100.00</div>
             </div>
             <div
               data-orientation="horizontal"
@@ -158,7 +159,7 @@ const UserProfile = () => {
             Address
           </h3>
         </div>
-        <div className={`w-[60%] m-auto ${addAddressForm ? "": "hidden"}`}>
+        <div className={`px-5 md:w-[60%] m-auto ${addAddressForm ? "": "hidden"}`}>
           <AddressForm />
         </div>
         <div className="w-[50%] m-auto pb-6">

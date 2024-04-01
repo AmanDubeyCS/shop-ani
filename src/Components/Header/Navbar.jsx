@@ -57,9 +57,15 @@ const Navbar = () => {
                 )}
 
                 <Link to="/cart">
-                  <span className="relative flex gap-1 text-lg items-center cursor-pointer">
-                    {cart.length>0 && <div className="absolute w-5 h-5 bg-red-500 rounded-full -top-2 right-9 text-sm text-center text-white">{cart.length}</div>}
-                    <IconShoppingCart stroke={1.5} />
+                  <span className="flex gap-1 text-lg items-center cursor-pointer">
+                    <div className="relative">
+                      {cart.length > 0 && (
+                        <div className="absolute w-5 h-5 bg-red-500 rounded-full -top-3 -right-2 text-sm text-center text-white">
+                          {cart.length}
+                        </div>
+                      )}
+                      <IconShoppingCart stroke={1.5} />
+                    </div>
                     <span className="hidden sm:flex">Cart</span>
                   </span>
                 </Link>

@@ -10,11 +10,11 @@ const Card = ({ list }) => {
     <>
       <Link to={`/product/${list.id}`}>
         <div className=" bg-white bg-transparent overflow-hidden ">
-          <div className="overflow-hidden h-full transition-all duration-200 ease-in-out hover:opacity-75">
+          <div className="overflow-hidden w-full h-full transition-all duration-200 ease-in-out hover:opacity-75">
             <img
               src={list?.Image?.Front}
               alt="product image"
-              className="max-w-full h-auto "
+              className="max-w-full h-full"
             />
           </div>
           <div className="flex flex-col gap-2 px-3 py-3">
@@ -39,7 +39,7 @@ const Card = ({ list }) => {
                 .map((item, index) => (
                   randStar>= index ? <IconStarFilled size={15} key={index}/> : <IconStar stroke={2} size={15} key={index}/>
                 ))}
-              <span className="text-sm ml-1 flex text-gray-500">( {rand} ) </span>
+              <span className="text-sm ml-1 flex text-gray-500">({rand}) </span>
             </div>
           </div>
         </div>
