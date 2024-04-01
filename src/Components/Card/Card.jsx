@@ -10,11 +10,11 @@ const Card = ({ list }) => {
     <>
       <Link to={`/product/${list.id}`}>
         <div className=" bg-white bg-transparent overflow-hidden ">
-          <div className="overflow-hidden w-full h-full transition-all duration-200 ease-in-out hover:opacity-75">
+          <div className="overflow-hidden transition-all duration-200 ease-in-out hover:opacity-75">
             <img
               src={list?.Image?.Front}
               alt="product image"
-              className="max-w-full h-full"
+              className="max-w-full h-auto"
             />
           </div>
           <div className="flex flex-col gap-2 px-3 py-3">
