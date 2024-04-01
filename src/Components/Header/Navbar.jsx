@@ -3,7 +3,7 @@ import { IconUserCircle } from "@tabler/icons-react";
 import { IconShoppingCart } from "@tabler/icons-react";
 import { IconSearch } from "@tabler/icons-react";
 import { navlist } from "./Navlist";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../Assets/logo1.png";
 import { auth } from "../../Config/Firbase";
 import { CartState } from "../../Context/CartContext";

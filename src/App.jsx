@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import CartPage from "./Pages/CartPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import ProtectedComponents from "./Components/ProtectedComponents/ProtectedComponents";
+import Categories from "./Components/Categories/Categories";
 
 function App() {
   const { pathname } = useLocation();
@@ -38,9 +39,10 @@ function App() {
           path="/Accessories"
           element={<HomeProducts title="Accessories" />}
         />
-        <Route path="/product" element={<ProductPage />}>
+        <Route path="/product/category/:type" element={<ProductPage />}>
           <Route path=":productId" element={<ProductPage />} />
         </Route>
+        <Route path="/category/:category" element={<Categories />} />
         <Route
           path="addproduct"
           element={<AddProduct dbRef={listCollection} />}

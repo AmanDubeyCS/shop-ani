@@ -8,7 +8,7 @@ const Card = ({ list }) => {
   const randStar = Math.floor(Math.random() * 5 + 1);
   return (
     <>
-      <Link to={`/product/${list.id}`}>
+      <Link to={`/product/category/${list.Type}/${list.id}`}>
         <div className=" bg-white bg-transparent overflow-hidden ">
           <div className="overflow-hidden transition-all duration-200 ease-in-out hover:opacity-75">
             <img
