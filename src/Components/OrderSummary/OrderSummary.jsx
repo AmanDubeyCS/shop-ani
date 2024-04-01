@@ -9,19 +9,19 @@ const OrderSummary = ({total, tax, shipping = "50", button, to, hidden=false, on
       <dl className="">
         <div className="flex justify-between py-4 border-b-2">
           <dt>Subtotal</dt>
-          <dd> &#8377;{" "}{Math.round(total)}</dd>
+          <dd>{Math.round(total)}</dd>
         </div>
         <div className="flex justify-between py-4 border-b-2">
           <dt>Shipping Estimate</dt>
-          <dd>&#8377;{shipping}</dd>
+          <dd>{shipping}</dd>
         </div>
         <div className="flex justify-between py-4 border-b-2">
           <dt>Tax Estimat</dt>
-          <dd>&#8377;{tax}</dd>
+          <dd>{tax}</dd>
         </div>
         <div className="flex justify-between py-4 font-semibold">
           <dt>Order Total</dt>
-          <dd>&#8377;{Math.round(total + shipping + tax)}</dd>
+          <dd>{Math.round(total + shipping + tax)}</dd>
         </div>
       </dl>
       <div className={`${hidden? 'hidden' : ""}`}>
