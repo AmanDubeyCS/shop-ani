@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { CartState } from "../../Context/CartContext";
 import OrderSummary from "../OrderSummary/OrderSummary";
-import { IconShoppingBag } from '@tabler/icons-react';
+import { IconShoppingBag } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { IconTrash } from '@tabler/icons-react';
+import { IconTrash } from "@tabler/icons-react";
+import { useProductContext } from '../../Context/ProductContext';
+import ProductCrousal from "../YouMayLike/ProductCrousal";
 
 const Cart = () => {
   const [total, setTotal] = useState();
+  const { list } = useProductContext();
+
+  const cartSuggestion = list.map((item) => item).filter((item) => item.Discount > 40);
 
   const {
     state: { cart },
@@ -31,10 +36,9 @@ const Cart = () => {
   return (
     <div className="w-full bg-white md:p-8 p-2">
       <div className="w-full md:flex justify-between">
-        
-          {cart.length > 0 ? (
-            cart.map((prod) => (
-              <div className="w-full md:w-[50%]">
+      <div className="w-full md:w-[50%]">
+        {cart.length > 0 ? (
+          cart.map((prod) => (
               <div className="flex py-8 border-b-2" key={prod.id}>
                 <div className="w-[25%]">
                   <img
@@ -125,33 +129,36 @@ const Cart = () => {
                           });
                         }}
                       >
-                        <IconTrash stroke={2} size={25}/>
+                        <IconTrash stroke={2} size={25} />
                       </div>
                     </div>
                   </div>
                   <p>In Stock</p>
                 </div>
               </div>
+          ))
+        ) : (
+          <div className="container flex items-center justify-center flex-col gap-2 p-4 h-[50dvh]">
+            <div className="flex flex-col items-center gap-2 text-center">
+              <IconShoppingBag stroke={2} size={75} />
+              <div className="flex flex-col items-center gap-2">
+                <h1 className="font-bold text-3xl tracking-tight">
+                  Your cart is empty
+                </h1>
+                <p className="text-gray-500 dark:text-gray-400">
+                  You haven't added any items to your cart yet
+                </p>
               </div>
-            ))
-          ) : (
-            <div className="container flex items-center justify-center flex-col gap-2 p-4 h-[50dvh]">
-              <div className="flex flex-col items-center gap-2 text-center">
-              <IconShoppingBag stroke={2} size={75}/>
-                <div className="flex flex-col items-center gap-2">
-                  <h1 className="font-bold text-3xl tracking-tight">
-                    Your cart is empty
-                  </h1>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    You haven't added any items to your cart yet
-                  </p>
-                </div>
-              </div>
-              <Link to="/">
-                <Button text="Continue Shopping" props={'p-5'} />
-              </Link>
             </div>
-          )}
+            <Link to="/">
+              <Button text="Continue Shopping" props={"p-5"} />
+            </Link>
+          </div>
+        )}
+        </div>
+        {cart.length < 1 && (
+          <ProductCrousal title="Choose From" data={cartSuggestion.slice(0, 5)}/>
+        )}
         {!cart.length < 1 && (
           <div className="md:w-[40%]">
             <h2 className="text-lg font-bold bg-[#F9FAFB] px-8 py-6">
