@@ -6,23 +6,23 @@ import OrderSummary from "../OrderSummary/OrderSummary";
 function OrderConfirmation() {
   const {
     state: { cart },
-    dispatch, total, tax
+    dispatch, 
   } = CartState();
 
-  // const [total, setTotal] = useState();
+  const [total, setTotal] = useState();
 
-  // useEffect(() => {
-  //   setTotal(
-  //     cart.reduce(
-  //       (acc, curr) =>
-  //         acc +
-  //         Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty,
-  //       0
-  //     )
-  //   );
-  // }, [cart]);
+  useEffect(() => {
+    setTotal(
+      cart.reduce(
+        (acc, curr) =>
+          acc +
+          Number(curr.Price - (curr.Discount / 100) * curr.Price) * curr.qty,
+        0
+      )
+    );
+  }, [cart]);
 
-  // const tax = Math.round(total * 0.18 + total);
+  const tax = Math.round(total * 0.18 + total);
   return (
     <div className="md:container md:flex mx-auto md:px-4 md:py-8">
       <div className="md:w-[80%]">
