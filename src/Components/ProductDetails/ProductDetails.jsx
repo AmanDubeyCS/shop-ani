@@ -116,7 +116,7 @@ const ProductDetails = ({ product }) => {
             </p>
             <div className="text-[28px] font-medium text-black pb-2 px-4 md:px-0">
               {" "}
-              {/*Product Price With Discount */}₹
+              {/*Product Price With Discount */}&#8377;
               {Math.round(
                 product.Price - (product.Discount / 100) * product.Price
               )}{" "}
