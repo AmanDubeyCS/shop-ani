@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextInput from "../TextInput/TextInput";
 
 function PaymentOptions() {
-  const [paymentOption, setPaymentOption] = useState("UPI");
+  const [paymentOption, setPaymentOption] = useState("COD");
 
   const handlePayment = (e) => {
     setPaymentOption(e.target.value);

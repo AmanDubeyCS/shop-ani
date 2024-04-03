@@ -21,11 +21,21 @@ const ProductDetails = ({ product }) => {
     .filter((item) => item.Type === product.Type);
   const [image, setImage] = useState(product?.Image?.Front);
   const [visible, setVisible] = useState(false);
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("M");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleAddToCart = () => {
+    
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  };
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
-  }
+  };
 
   const handleImageChange = (e) => {
     setImage(e.target.src);
@@ -54,6 +64,25 @@ const ProductDetails = ({ product }) => {
 
   return (
     <section>
+      <div
+        class={`${showAlert ? '': 'hidden'} fixed bottom-0 left-[50%] w-72  bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md`}
+        role="alert"
+      >
+        <div class="flex items-center">
+          <div class="py-1">
+            <svg
+              class="fill-current h-6 w-6 text-teal-500 mr-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-bold">Product Added To Cart</p>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className=" block md:flex md:p-4 bg-white">
           {/* right side image and button section */}
@@ -127,10 +156,13 @@ const ProductDetails = ({ product }) => {
                 {product.Discount}%
               </span>
             </div>
-            <h1 className="font-mediu mt-7 mb-4  px-4 md:px-0">Size</h1>
+            <div className="flex justify-between items-center mt-7 mb-4  px-4 md:px-0"> 
+            <h1 className="font-medium ">Size </h1>
+            <h1 className="text-blue-400 cursor-pointer">See Size Chart</h1>
+            </div>
             <div className="grid grid-cols-3 md:flex gap-5 pb-5 px-4 md:px-0">
               {/* Product Sizes */}
-              {sizes.map((size) => (
+              {sizes.map((size, i) => (
                 <label
                   key={size}
                   className={`border w-full py-3 text-center cursor-pointer text-lg font-medium ${
@@ -160,7 +192,7 @@ const ProductDetails = ({ product }) => {
                   });
                 }}
               >
-                <Button text="Add To Cart" />
+                <Button text="Add To Cart" onClick={handleAddToCart}/>
               </div>
             )}
 
@@ -210,7 +242,7 @@ const ProductDetails = ({ product }) => {
                 policy. No questions asked.
               </span>
             </div>
-            <ProductDiscription product={product}/>
+            <ProductDiscription product={product} />
           </div>
         </div>
         <Reviews />

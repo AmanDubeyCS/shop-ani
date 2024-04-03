@@ -73,7 +73,7 @@ const Navbar = () => {
             </div>
           </div>
         </section>
-        <div className="flex md:hidden gap-3 bg-[#f0f5ff] outline-none rounded-lg px-5 py-2 text-base cursor-pointer transition">
+        <div className="flex md:hidden gap-3 bg-[#f0f5ff] outline-none rounded-lg px-2 py-2 text-base cursor-pointer transition">
           <IconSearch size={23} stroke={2} />
           <input
             placeholder="Enter your search"

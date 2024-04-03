@@ -23,7 +23,7 @@ const Checkout = () => {
     );
   }, [cart]);
 
-  const tax = Math.round(total * 0.18 + total);
+  const tax = Math.round(total * 0.18);
 
   const [selectedOption, setSelectedOption] = useState("standard");
 

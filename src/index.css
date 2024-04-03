@@ -159,11 +159,11 @@ body {
 }
 
 .swiper-button-prev {
-  background-image: url("D:\shop-ani\src\Assets\prev.png");
+  background-image: url("src/Assets/prev.png");
 }
 
 .swiper-button-next {
-  background-image: url("D:\shop-ani\src\Assets\next.png");
+  background-image: url("src/Assets/next.png");
 }
 
 .swiper-button-next::after,

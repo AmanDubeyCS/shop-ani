@@ -33,10 +33,11 @@ const Cart = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const tax = Math.round(total * 0.18 + total);
+  const tax = Math.round(total * 0.18);
 
   return (
     <section>
+      
       <div className="container w-full bg-white md:p-8 p-2">
         <div className="w-full md:flex justify-between">
           <div className="w-full md:w-[50%]">

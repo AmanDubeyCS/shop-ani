@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "../Components/Hero/Hero";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -28,12 +28,13 @@ const Homepage = () => {
     <section className="pt-8">
       <div className="container rounded-md shadow-[inset_10px_10px_20px_8px_#00000024] relative">
         <Swiper
-          modules={[Navigation, Pagination]}
+          modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
           slidesPerView={1}
           pagination={true}
           loop={true}
           navigation
+          autoplay={{ delay: 2000 }}
         >
           <SwiperSlide>
             <Hero img={b1} />
