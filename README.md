@@ -10,7 +10,7 @@ simple shopping experience that puts the focus on the products.</p>
 
 <h3>Build with:</h3>
 
-» Vanilla CSS <br>
+» Tailwind CSS <br>
 » React JS <br>
 » Firebase Authentication <br>
 » Firebase firestore <br>
