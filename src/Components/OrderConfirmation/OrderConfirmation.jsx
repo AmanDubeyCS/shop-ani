@@ -22,7 +22,7 @@ function OrderConfirmation() {
     );
   }, [cart]);
 
-  const tax = Math.round(total * 0.18 + total);
+  const tax = Math.round(total * 0.18);
   return (
     <div className="md:container md:flex mx-auto md:px-4 md:py-8">
       <div className="md:w-[80%]">
